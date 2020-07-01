@@ -1,3 +1,4 @@
+#include "AStar.hpp"
 #include <QPainter>
 #include <QImage>
 #include <QMouseEvent>
@@ -5,6 +6,8 @@
 #include "imageview.h"
 
 #define MILLISECOND 1000
+
+//using namespace AStar;
 
 ImageView::ImageView(QWidget *parent) : QWidget(parent)
 {
@@ -57,6 +60,29 @@ void ImageView::SetNonePoint()
     isSetNonePoint = true;
 }
 
+void ImageView::FindPath()
+{
+    AStar::Generator gen;
+    gen.setWorldSize({600,600});
+    for(int i= 250;i<390;++i)
+    {
+        for(int j=160; j< 300;++j)
+        {
+            gen.addCollision({j,i});
+        }
+    }
+    gen.setHeuristic(AStar::Heuristic::manhattan);
+    gen.setDiagonalMovement(true);
+    AStar::CoordinateList list = gen.findPath({start_point.x(),start_point.y()},{end_point.x(),end_point.y()});
+    path.clear();
+    for(int i=0;i<list.size();++i)
+    {
+        path.push_back(QPoint(list[i].x,list[i].y));
+    }
+
+    update();
+}
+
 void ImageView::paintEvent(QPaintEvent *event)
 {
     if(img==nullptr)
@@ -100,6 +126,12 @@ void ImageView::paintEvent(QPaintEvent *event)
     newpen.setWidth(2);
     painter_img.setPen(newpen);
     painter_img.drawEllipse(end_point,20,20);
+
+    for(int i=0;i<path.size()-1;++i)
+    {
+        painter_img.drawPoint(path[i]);
+    }
+
     painter_img.setPen(oldpen);
     QImage paintimg = update_img.scaled(rect.width(),rect.height());
     painter.drawImage(rect,paintimg);

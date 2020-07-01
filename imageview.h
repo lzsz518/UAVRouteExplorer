@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTime>
+#include <QVector>
 
 
 class ImageView : public QWidget
@@ -16,6 +17,8 @@ public:
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();
+
+    void FindPath();
 protected:
     void paintEvent(QPaintEvent *event);
 
@@ -40,6 +43,7 @@ private:
 
     QPoint start_point;
     QPoint end_point;
+    QVector<QPoint> path;
 };
 
 #endif // IMAGEVIEW_H

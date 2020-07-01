@@ -15,6 +15,7 @@ Dashboard::Dashboard(QWidget *parent) :
     connect(ui->pb_openimage,SIGNAL(clicked()),this,SLOT(slotOpenImage()));
     connect(ui->rb_startpoint,SIGNAL(clicked()),this,SLOT(slotSetStartPoint ()));
     connect(ui->rb_endpoint,SIGNAL(clicked()),this,SLOT(slotSetEndPoint ()));
+    connect(ui->pb_explore,SIGNAL(clicked()),this,SLOT(slotExplore()));
 }
 
 Dashboard::~Dashboard()
@@ -42,7 +43,7 @@ void Dashboard::slotOpenImage()
 
 void Dashboard::slotExplore()
 {
-
+    view->FindPath();
 }
 
 void Dashboard::slotStop()
