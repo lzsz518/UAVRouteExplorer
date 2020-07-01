@@ -13,11 +13,15 @@ public:
     virtual ~ImageView();
 
     void Update(const QImage &image);
+    void SetStartPoint();
+    void SetEndPoint();
+    void SetNonePoint();
 protected:
     void paintEvent(QPaintEvent *event);
 
     void resizeEvent(QResizeEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 private:
     int raw_min;
     int raw_max;
@@ -27,9 +31,15 @@ private:
     double r1;
     double r2;
     double fps;
+    bool isSetStartPoint;
+    bool isSetEndPoint;
+    bool isSetNonePoint;
     QRect rect;
     QImage *img;
     QTime fps_timer;
+
+    QPoint start_point;
+    QPoint end_point;
 };
 
 #endif // IMAGEVIEW_H

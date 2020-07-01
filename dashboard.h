@@ -25,6 +25,8 @@ private slots:
     void slotExplore();
     void slotStop();
     void slotClose();
+    void slotSetStartPoint();
+    void slotSetEndPoint();
 private:
     Ui::Dashboard *ui;
     ImageView *view;

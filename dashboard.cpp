@@ -11,7 +11,10 @@ Dashboard::Dashboard(QWidget *parent) :
     view = new ImageView;
     ui->layout_image->addWidget(view);
 
+    view->SetStartPoint();
     connect(ui->pb_openimage,SIGNAL(clicked()),this,SLOT(slotOpenImage()));
+    connect(ui->rb_startpoint,SIGNAL(clicked()),this,SLOT(slotSetStartPoint ()));
+    connect(ui->rb_endpoint,SIGNAL(clicked()),this,SLOT(slotSetEndPoint ()));
 }
 
 Dashboard::~Dashboard()
@@ -51,3 +54,37 @@ void Dashboard::slotClose()
 {
 
 }
+
+void Dashboard::slotSetStartPoint()
+{
+    if(view!=nullptr)
+    {
+        view->SetStartPoint();
+    }
+}
+
+void Dashboard::slotSetEndPoint()
+{
+    if(view!=nullptr)
+    {
+        view->SetEndPoint();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
