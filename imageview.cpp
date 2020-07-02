@@ -213,12 +213,14 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
         {
             start_point.setX(x);
             start_point.setY(y);
+            StartPointSet(QPoint(x,y));
         }
 
         if(isSetEndPoint)
         {
             end_point.setX(x);
             end_point.setY(y);
+            EndPointSet(QPoint(x,y));
         }
     }
 

@@ -25,6 +25,11 @@ protected:
     void resizeEvent(QResizeEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
+signals:
+    void StartPointSet(QPoint);
+    void EndPointSet(QPoint);
+
 private:
     int raw_min;
     int raw_max;

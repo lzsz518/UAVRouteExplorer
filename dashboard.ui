@@ -32,10 +32,18 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="sb_startX"/>
+        <widget class="QLineEdit" name="le_startX">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="sb_startY"/>
+        <widget class="QLineEdit" name="le_startY">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -44,15 +52,23 @@
        <item>
         <widget class="QRadioButton" name="rb_endpoint">
          <property name="text">
-          <string>ending point</string>
+          <string>ending point  </string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="sb_endX"/>
+        <widget class="QLineEdit" name="le_endX">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="sb_endY"/>
+        <widget class="QLineEdit" name="le_endY">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

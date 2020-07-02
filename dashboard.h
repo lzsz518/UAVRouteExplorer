@@ -27,12 +27,20 @@ private slots:
     void slotClose();
     void slotSetStartPoint();
     void slotSetEndPoint();
+    void slotGetStartPoint(QPoint p);
+    void slotGetEndPoint(QPoint p);
 private:
     Ui::Dashboard *ui;
     ImageView *view;
 
     vector<QImage*> storm_images;
     vector<vector<QRect>> storm_areas;
+    void ClearImage();
+    void OpenImages();
+    QString GetDataFileName(const QString &image_name);
+
+    void LoadTxtFile(const char *pathName, const int width, const int height, vector<QRect> &areas);
+    int  ReadNumber(vector<float> &Numbers,const char* NumberStr,int NumberCount);
 };
 
 #endif // DASHBOARD_H
