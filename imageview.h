@@ -14,7 +14,7 @@ public:
     virtual ~ImageView();
 
     void Update(const QImage &image);
-    void Update(const QImage &image, const  const QVector<QPoint> &_path);
+    void Update(const QImage &image, const QVector<QRect> &areas,  const QVector<QPoint> &_path);
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();
@@ -51,6 +51,7 @@ private:
     QPoint start_point;
     QPoint end_point;
     QPoint uav_point;
+    QVector<QRect> storm_areas;
     QVector<QPoint> path;
 };
 

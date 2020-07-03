@@ -35,8 +35,10 @@ private:
 
     QVector<QImage*> storm_images;
     QVector<QVector<QRect>> storm_areas;
+    QVector<QVector<QPoint>> paths;
     void ClearImage();
     void OpenImages();
+    QVector<QPoint> FindPath(const int worldWidth,const int worldHeight, const QPoint p1, const QPoint p2, const QVector<QRect> &areas);
     QString GetDataFileName(const QString &image_name);
 
     void LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas);

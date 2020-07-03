@@ -1,5 +1,7 @@
 #include <fstream>
 #include <QFileDialog>
+#include <QVector>
+#include "AStar.hpp"
 #include "imageview.h"
 #include "dashboard.h"
 #include "ui_dashboard.h"
@@ -123,6 +125,31 @@ void Dashboard::OpenImages()
 
 }
 
+QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas)
+{
+    QVector<QPoint> path;
+    AStar::Generator gen;
+    gen.setWorldSize({world_width,world_height});
+    for(int i= 250;i<390;++i)
+    {
+        for(int j=160; j< 300;++j)
+        {
+            gen.addCollision({j,i});
+        }
+    }
+    gen.setHeuristic(AStar::Heuristic::manhattan);
+    gen.setDiagonalMovement(true);
+
+
+    AStar::CoordinateList list = gen.findPath({start_point.x(),start_point.y()},{end_point.x(),end_point.y()});
+    path.clear();
+    for(int i=0;i<list.size();++i)
+    {
+        path.push_back(QPoint(list[i].x,list[i].y));
+    }
+
+    return path;
+}
 QString Dashboard::GetDataFileName(const QString &image_name)
 {
     QString result = image_name;

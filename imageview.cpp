@@ -46,7 +46,7 @@ void ImageView::Update(const QImage &image)
     update();
 }
 
-void ImageView::Update(const QImage &image, const QVector<QPoint> &_path)
+void ImageView::Update(const QImage &image, const QVector<QRect> &areas, const QVector<QPoint> &_path)
 {
     if(img!=nullptr)
     {
@@ -60,6 +60,10 @@ void ImageView::Update(const QImage &image, const QVector<QPoint> &_path)
 
     path.clear();
     path = _path;
+    storm_areas.clear();
+    storm_areas = areas;
+
+    update();
 }
 
 void ImageView::SetStartPoint()
@@ -107,7 +111,7 @@ void ImageView::FindPath()
     for(int i=path.size()-1;i>=0;--i)
     {
         QApplication::processEvents(QEventLoop::AllEvents);
-        Sleep(100);
+        Sleep(30);
         uav_point.setX(path[i].x()-UAV_ICON_SIZE*0.5);
         uav_point.setY(path[i].y()-UAV_ICON_SIZE*0.5);
         update();
