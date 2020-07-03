@@ -1,4 +1,6 @@
 #include "AStar.hpp"
+#include <QApplication>
+#include <Windows.h>
 #include <QPainter>
 #include <QImage>
 #include <QMouseEvent>
@@ -8,6 +10,7 @@
 #define MILLISECOND 1000
 
 //using namespace AStar;
+#define UAV_ICON_SIZE 45
 
 ImageView::ImageView(QWidget *parent) : QWidget(parent)
 {
@@ -19,6 +22,8 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
     start_point.setY(-1);
     end_point.setX(-1);
     end_point.setY(-1);
+    uav_img.load(":/Pic/UAV.png");
+    uav_img = uav_img.scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
 }
 
 ImageView::~ImageView()
@@ -38,6 +43,23 @@ void ImageView::Update(const QImage &image)
         img = new QImage;
 
     *img = image;
+    update();
+}
+
+void ImageView::Update(const QImage &image, const QVector<QPoint> &_path)
+{
+    if(img!=nullptr)
+    {
+        delete img;
+        img = new QImage;
+    }
+    else
+        img = new QImage;
+
+    *img = image;
+
+    path.clear();
+    path = _path;
 }
 
 void ImageView::SetStartPoint()
@@ -81,6 +103,15 @@ void ImageView::FindPath()
     }
 
     update();
+
+    for(int i=path.size()-1;i>=0;--i)
+    {
+        QApplication::processEvents(QEventLoop::AllEvents);
+        Sleep(100);
+        uav_point.setX(path[i].x()-UAV_ICON_SIZE*0.5);
+        uav_point.setY(path[i].y()-UAV_ICON_SIZE*0.5);
+        update();
+    }
 }
 
 void ImageView::paintEvent(QPaintEvent *event)
@@ -131,6 +162,8 @@ void ImageView::paintEvent(QPaintEvent *event)
     {
         painter_img.drawPoint(path[i]);
     }
+
+    painter_img.drawImage(uav_point,uav_img);
 
     painter_img.setPen(oldpen);
     QImage paintimg = update_img.scaled(rect.width(),rect.height());
@@ -214,6 +247,8 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
             start_point.setX(x);
             start_point.setY(y);
             StartPointSet(QPoint(x,y));
+            uav_point.setX(x-UAV_ICON_SIZE*0.5);
+            uav_point.setY(y-UAV_ICON_SIZE*0.5);
         }
 
         if(isSetEndPoint)

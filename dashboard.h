@@ -33,13 +33,13 @@ private:
     Ui::Dashboard *ui;
     ImageView *view;
 
-    vector<QImage*> storm_images;
-    vector<vector<QRect>> storm_areas;
+    QVector<QImage*> storm_images;
+    QVector<QVector<QRect>> storm_areas;
     void ClearImage();
     void OpenImages();
     QString GetDataFileName(const QString &image_name);
 
-    void LoadTxtFile(const char *pathName, const int width, const int height, vector<QRect> &areas);
+    void LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas);
     int  ReadNumber(vector<float> &Numbers,const char* NumberStr,int NumberCount);
 };
 

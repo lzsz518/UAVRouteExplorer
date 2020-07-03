@@ -14,6 +14,7 @@ public:
     virtual ~ImageView();
 
     void Update(const QImage &image);
+    void Update(const QImage &image, const  const QVector<QPoint> &_path);
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();
@@ -45,9 +46,11 @@ private:
     QRect rect;
     QImage *img;
     QTime fps_timer;
+    QImage uav_img;
 
     QPoint start_point;
     QPoint end_point;
+    QPoint uav_point;
     QVector<QPoint> path;
 };
 

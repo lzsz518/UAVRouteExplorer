@@ -92,7 +92,7 @@ void Dashboard::slotGetEndPoint(QPoint p)
 
 void Dashboard::ClearImage()
 {
-    for(vector<QImage*>::iterator itor= storm_images.begin();itor!=storm_images.end();++itor)
+    for(QVector<QImage*>::iterator itor= storm_images.begin();itor!=storm_images.end();++itor)
     {
         delete *itor;
     }
@@ -115,7 +115,7 @@ void Dashboard::OpenImages()
         img->load(fileNames[i]);
         storm_images.push_back(img);
         QString dataFineName = GetDataFileName(fileNames[i]);
-        vector<QRect> areas;
+        QVector<QRect> areas;
         LoadTxtFile(dataFineName.toStdString().c_str(),img->width(),img->height(),areas);
         storm_areas.push_back(areas);
 
@@ -133,7 +133,7 @@ QString Dashboard::GetDataFileName(const QString &image_name)
 }
 
 
-void Dashboard::LoadTxtFile(const char *pathName, const int width, const int height,vector<QRect> &areas)
+void Dashboard::LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas)
 {
     areas.clear();
     fstream fin;
