@@ -110,6 +110,8 @@ void Dashboard::OpenImages()
         return;
 
     ClearImage();
+    storm_areas.clear();
+    paths.clear();
 
     for(int i=0;i<fileNames.size();++i)
     {
@@ -120,9 +122,7 @@ void Dashboard::OpenImages()
         QVector<QRect> areas;
         LoadTxtFile(dataFineName.toStdString().c_str(),img->width(),img->height(),areas);
         storm_areas.push_back(areas);
-
     }
-
 }
 
 QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas)
@@ -140,6 +140,16 @@ QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height
     gen.setHeuristic(AStar::Heuristic::manhattan);
     gen.setDiagonalMovement(true);
 
+    for(QVector<QRect>::const_iterator itor=areas.begin();itor!=areas.end();++itor)
+    {
+        for(int i=itor->y();i<itor->y()+itor->height();++i)
+        {
+            for(int j=itor->x();j<itor->x()+itor->width();++j)
+            {
+                gen.addCollision({ j , i });
+            }
+        }
+    }
 
     AStar::CoordinateList list = gen.findPath({start_point.x(),start_point.y()},{end_point.x(),end_point.y()});
     path.clear();
