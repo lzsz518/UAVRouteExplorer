@@ -59,7 +59,7 @@ void Dashboard::slotExplore()
 //    view->FindPath();
     paths.clear();
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
-    path_index = paths.size()-1;
+    path_index = 0;
     animation_timer.start(50);
 }
 
@@ -107,28 +107,60 @@ void Dashboard::slotGetEndPoint(QPoint p)
 
 void Dashboard::slotPrevFrame()
 {
+    if(frame_index==0)
+        return;
+
     --frame_index;
-    if(frame_index<0)
-        frame_index = 0;
 
     if(storm_images.empty())
         return;
 
-    QVector<QPoint> p;
-    view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+
+    if(animation_timer.isActive())
+    {
+        animation_timer.stop();
+        QVector<QPoint> new_path =  FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,storm_areas[frame_index]);
+        paths.remove(path_index,paths.size()-path_index);
+        for(int i=0;i<new_path.size();++i)
+        {
+            paths.push_back(new_path[i]);
+        }
+       animation_timer.start();
+    }
+    else
+    {
+        QVector<QPoint> p;
+        view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+    }
+
 }
 
 void Dashboard::slotNextFrame()
 {
+    if(frame_index>=storm_images.size()-1)
+        return;
+
     ++frame_index;
-    if(frame_index>=storm_images.size())
-        frame_index = storm_images.size()-1;
 
     if(storm_images.empty())
         return;
 
-    QVector<QPoint> p;
-    view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+    if(animation_timer.isActive())
+    {
+        animation_timer.stop();
+        QVector<QPoint> new_path =  FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,storm_areas[frame_index]);
+        paths.remove(path_index,paths.size()-path_index);
+        for(int i=0;i<new_path.size();++i)
+        {
+            paths.push_back(new_path[i]);
+        }
+       animation_timer.start();
+    }
+    else
+    {
+        QVector<QPoint> p;
+        view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+    }
 }
 
 void Dashboard::slotAnimationTimer()
@@ -136,8 +168,8 @@ void Dashboard::slotAnimationTimer()
     if(view!=nullptr)
     {
         view->Update(*storm_images[frame_index],paths[path_index],storm_areas[frame_index],paths);
-        --path_index;
-        if(path_index < 0)
+        ++path_index;
+        if(path_index >= paths.size())
         {
             path_index = paths.size()-1;
             animation_timer.stop();
@@ -205,7 +237,7 @@ QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height
     path.clear();
     for(int i=0;i<list.size();++i)
     {
-        path.push_back(QPoint(list[i].x,list[i].y));
+        path.push_front(QPoint(list[i].x,list[i].y));
     }
 
     return path;
