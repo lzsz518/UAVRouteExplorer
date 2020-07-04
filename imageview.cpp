@@ -46,7 +46,7 @@ void ImageView::Update(const QImage &image)
     update();
 }
 
-void ImageView::Update(const QImage &image, const QVector<QRect> &areas, const QVector<QPoint> &_path)
+void ImageView::Update(const QImage &image, const QPoint current_point, const QVector<QRect> &areas, const QVector<QPoint> &_path)
 {
     if(img!=nullptr)
     {
@@ -62,6 +62,9 @@ void ImageView::Update(const QImage &image, const QVector<QRect> &areas, const Q
     path = _path;
     storm_areas.clear();
     storm_areas = areas;
+    uav_point = current_point;
+    uav_point.rx() -= UAV_ICON_SIZE * 0.5;
+    uav_point.ry() -= UAV_ICON_SIZE * 0.5;
 
     update();
 }
@@ -90,11 +93,14 @@ void ImageView::FindPath()
 {
     AStar::Generator gen;
     gen.setWorldSize({600,600});
-    for(int i= 250;i<390;++i)
+    for(QVector<QRect>::const_iterator itor=storm_areas.begin();itor!=storm_areas.end();++itor)
     {
-        for(int j=160; j< 300;++j)
+        for(int i=itor->y();i<itor->y()+itor->height();++i) //Actually only setting bounding box is enough, but that's request 4 loops, the coding more cumbersome than 2 loops
         {
-            gen.addCollision({j,i});
+            for(int j=itor->x();j<itor->x()+itor->width();++j)
+            {
+                gen.addCollision({ j , i });
+            }
         }
     }
     gen.setHeuristic(AStar::Heuristic::manhattan);
@@ -111,7 +117,7 @@ void ImageView::FindPath()
     for(int i=path.size()-1;i>=0;--i)
     {
         QApplication::processEvents(QEventLoop::AllEvents);
-        Sleep(30);
+        Sleep(1);
         uav_point.setX(path[i].x()-UAV_ICON_SIZE*0.5);
         uav_point.setY(path[i].y()-UAV_ICON_SIZE*0.5);
         update();
@@ -165,6 +171,14 @@ void ImageView::paintEvent(QPaintEvent *event)
     for(int i=0;i<path.size()-1;++i)
     {
         painter_img.drawPoint(path[i]);
+    }
+
+
+    newpen.setColor(Qt::blue);
+    painter_img.setPen(newpen);
+    for(int i=0;i<storm_areas.size();++i)
+    {
+        painter_img.drawRects(storm_areas);
     }
 
     painter_img.drawImage(uav_point,uav_img);

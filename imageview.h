@@ -14,7 +14,7 @@ public:
     virtual ~ImageView();
 
     void Update(const QImage &image);
-    void Update(const QImage &image, const QVector<QRect> &areas,  const QVector<QPoint> &_path);
+    void Update(const QImage &image, const QPoint current_point,const QVector<QRect> &areas,  const QVector<QPoint> &_path);
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();

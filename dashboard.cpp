@@ -21,6 +21,11 @@ Dashboard::Dashboard(QWidget *parent) :
     connect(ui->pb_explore,SIGNAL(clicked()),this,SLOT(slotExplore()));
     connect(view,SIGNAL(StartPointSet(QPoint)),this,SLOT(slotGetStartPoint(QPoint)));
     connect(view,SIGNAL(EndPointSet(QPoint)),this,SLOT(slotGetEndPoint(QPoint)));
+    connect(ui->pb_prevframe,SIGNAL(clicked()),this,SLOT(slotPrevFrame()));
+    connect(ui->pb_nextframe,SIGNAL(clicked()),this,SLOT(slotNextFrame()));
+    connect(&animation_timer,SIGNAL(timeout()),this,SLOT(slotAnimationTimer()));
+
+    frame_index = 0;
 }
 
 Dashboard::~Dashboard()
@@ -31,27 +36,31 @@ Dashboard::~Dashboard()
 
 void Dashboard::slotOpenImage()
 {
-    QString fileName= QFileDialog::getOpenFileName(this,
-         tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
-    if(fileName.isEmpty())
-        return;
+//    QString fileName= QFileDialog::getOpenFileName(this,
+//         tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
+//    if(fileName.isEmpty())
+//        return;
 
-    QImage *img = new QImage;
-    if(img==nullptr)
-        return;
+//    QImage *img = new QImage;
+//    if(img==nullptr)
+//        return;
 
-    img->load(fileName);
+//    img->load(fileName);
 
-    storm_images.push_back(img);
-    if(view!=nullptr)
-        view->Update(*img);
+//    storm_images.push_back(img);
+//    if(view!=nullptr)
+//        view->Update(*img);
 
     OpenImages();
 }
 
 void Dashboard::slotExplore()
 {
-    view->FindPath();
+//    view->FindPath();
+    paths.clear();
+    paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
+    path_index = paths.size()-1;
+    animation_timer.start(50);
 }
 
 void Dashboard::slotStop()
@@ -84,12 +93,56 @@ void Dashboard::slotGetStartPoint(QPoint p)
 {
     ui->le_startX->setText(QString("%1").arg(p.x()));
     ui->le_startY->setText(QString("%1").arg(p.y()));
+
+    start_point = p;
 }
 
 void Dashboard::slotGetEndPoint(QPoint p)
 {
     ui->le_endX->setText(QString("%1").arg(p.x()));
     ui->le_endY->setText(QString("%1").arg(p.y()));
+
+    end_point = p;
+}
+
+void Dashboard::slotPrevFrame()
+{
+    --frame_index;
+    if(frame_index<0)
+        frame_index = 0;
+
+    if(storm_images.empty())
+        return;
+
+    QVector<QPoint> p;
+    view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+}
+
+void Dashboard::slotNextFrame()
+{
+    ++frame_index;
+    if(frame_index>=storm_images.size())
+        frame_index = storm_images.size()-1;
+
+    if(storm_images.empty())
+        return;
+
+    QVector<QPoint> p;
+    view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+}
+
+void Dashboard::slotAnimationTimer()
+{
+    if(view!=nullptr)
+    {
+        view->Update(*storm_images[frame_index],paths[path_index],storm_areas[frame_index],paths);
+        --path_index;
+        if(path_index < 0)
+        {
+            path_index = paths.size()-1;
+            animation_timer.stop();
+        }
+    }
 }
 
 void Dashboard::ClearImage()
@@ -123,6 +176,10 @@ void Dashboard::OpenImages()
         LoadTxtFile(dataFineName.toStdString().c_str(),img->width(),img->height(),areas);
         storm_areas.push_back(areas);
     }
+
+    frame_index = 0;
+    QVector<QPoint> p;
+    view->Update(*storm_images[0],QPoint(0,0),storm_areas[0],p);
 }
 
 QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas)
@@ -130,19 +187,12 @@ QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height
     QVector<QPoint> path;
     AStar::Generator gen;
     gen.setWorldSize({world_width,world_height});
-    for(int i= 250;i<390;++i)
-    {
-        for(int j=160; j< 300;++j)
-        {
-            gen.addCollision({j,i});
-        }
-    }
     gen.setHeuristic(AStar::Heuristic::manhattan);
     gen.setDiagonalMovement(true);
 
     for(QVector<QRect>::const_iterator itor=areas.begin();itor!=areas.end();++itor)
     {
-        for(int i=itor->y();i<itor->y()+itor->height();++i)
+        for(int i=itor->y();i<itor->y()+itor->height();++i) //Actually only setting bounding box is enough, but that's request 4 loops, the coding more cumbersome than 2 loops
         {
             for(int j=itor->x();j<itor->x()+itor->width();++j)
             {

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui {
 class Dashboard;
@@ -29,13 +30,22 @@ private slots:
     void slotSetEndPoint();
     void slotGetStartPoint(QPoint p);
     void slotGetEndPoint(QPoint p);
+    void slotPrevFrame();
+    void slotNextFrame();
+    void slotAnimationTimer();
 private:
+    int frame_index;
+    int path_index;
     Ui::Dashboard *ui;
     ImageView *view;
+    QPoint start_point;
+    QPoint end_point;
+    QTimer animation_timer;
 
     QVector<QImage*> storm_images;
     QVector<QVector<QRect>> storm_areas;
-    QVector<QVector<QPoint>> paths;
+    QVector<QPoint> paths;
+
     void ClearImage();
     void OpenImages();
     QVector<QPoint> FindPath(const int worldWidth,const int worldHeight, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas);
