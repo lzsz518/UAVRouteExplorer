@@ -5,6 +5,7 @@
 #include <QTime>
 #include <QVector>
 
+#define UAV_IMAGE_NUMBER 8
 
 class ImageView : public QWidget
 {
@@ -14,7 +15,7 @@ public:
     virtual ~ImageView();
 
     void Update(const QImage &image);
-    void Update(const QImage &image, const QPoint current_point,const QVector<QRect> &areas,  const QVector<QPoint> &_path);
+    void Update(const QImage &image, const QPoint current_point,const QVector<QRect> &areas,  const QVector<QPoint> &_path, int const angle=0);
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();
@@ -32,9 +33,7 @@ signals:
     void EndPointSet(QPoint);
 
 private:
-    int raw_min;
-    int raw_max;
-    int raw_value;
+    int uav_angle;
     int posx,posy;
     unsigned long long frame_count;
     double r1;
@@ -46,7 +45,7 @@ private:
     QRect rect;
     QImage *img;
     QTime fps_timer;
-    QImage uav_img;
+    QImage uav_img[UAV_IMAGE_NUMBER];
 
     QPoint start_point;
     QPoint end_point;

@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>Pic/UAV.png</file>
+        <file>Pic/UAV_45.png</file>
+        <file>Pic/UAV_90.png</file>
+        <file>Pic/UAV_135.png</file>
+        <file>Pic/UAV_180.png</file>
+        <file>Pic/UAV_225.png</file>
+        <file>Pic/UAV_270.png</file>
+        <file>Pic/UAV_315.png</file>
     </qresource>
 </RCC>

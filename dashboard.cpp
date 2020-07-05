@@ -167,7 +167,17 @@ void Dashboard::slotAnimationTimer()
 {
     if(view!=nullptr)
     {
-        view->Update(*storm_images[frame_index],paths[path_index],storm_areas[frame_index],paths);
+        int angle;
+        if(path_index+1<paths.size())
+        {
+            angle = GetUAVAngle(paths[path_index],paths[path_index+1]);
+        }
+        else
+        {
+            angle = GetUAVAngle(paths[path_index-1],paths[path_index]);
+        }
+
+        view->Update(*storm_images[frame_index],paths[path_index],storm_areas[frame_index],paths,angle);
         ++path_index;
         if(path_index >= paths.size())
         {
@@ -327,7 +337,28 @@ int  Dashboard::ReadNumber(vector<float> &Numbers,const char* NumberStr,int Numb
     return 0;
 }
 
+int Dashboard::GetUAVAngle(QPoint p1, QPoint p2)
+{
+    int deltaX = p2.x()-p1.x();
+    int deltaY = p2.y()-p1.y();
 
+    if(deltaX==0 && deltaY==-1)
+        return 0;
+    if(deltaX==1 && deltaY==-1)
+        return 45;
+    if(deltaX==1 && deltaY==0)
+        return 90;
+    if(deltaX==1 && deltaY==1)
+        return 135;
+    if(deltaX==0 && deltaY==1)
+        return 180;
+    if(deltaX==-1 && deltaY==1)
+        return 225;
+    if(deltaX==-1 && deltaY==0)
+        return 270;
+    if(deltaX==-1 && deltaY==-1)
+        return 315;
+}
 
 
 

@@ -16,14 +16,30 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
 {
     img = nullptr;
     frame_count = 0;
-    raw_value = -1;
     setMouseTracking(true);
     start_point.setX(-1);
     start_point.setY(-1);
     end_point.setX(-1);
     end_point.setY(-1);
-    uav_img.load(":/Pic/UAV.png");
-    uav_img = uav_img.scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+
+    uav_img[0].load(":/Pic/UAV.png");
+    uav_img[0] = uav_img[0].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[1].load(":/Pic/UAV_45.png");
+    uav_img[1] = uav_img[1].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[2].load(":/Pic/UAV_90.png");
+    uav_img[2] = uav_img[2].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[3].load(":/Pic/UAV_135.png");
+    uav_img[3] = uav_img[3].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[4].load(":/Pic/UAV_180.png");
+    uav_img[4] = uav_img[4].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[5].load(":/Pic/UAV_225.png");
+    uav_img[5] = uav_img[5].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[6].load(":/Pic/UAV_270.png");
+    uav_img[6] = uav_img[6].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+    uav_img[7].load(":/Pic/UAV_315.png");
+    uav_img[7] = uav_img[7].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
+
+    uav_angle = 0;
 }
 
 ImageView::~ImageView()
@@ -46,7 +62,7 @@ void ImageView::Update(const QImage &image)
     update();
 }
 
-void ImageView::Update(const QImage &image, const QPoint current_point, const QVector<QRect> &areas, const QVector<QPoint> &_path)
+void ImageView::Update(const QImage &image, const QPoint current_point, const QVector<QRect> &areas, const QVector<QPoint> &_path, const int angle)
 {
     if(img!=nullptr)
     {
@@ -65,6 +81,8 @@ void ImageView::Update(const QImage &image, const QPoint current_point, const QV
     uav_point = current_point;
     uav_point.rx() -= UAV_ICON_SIZE * 0.5;
     uav_point.ry() -= UAV_ICON_SIZE * 0.5;
+
+    uav_angle = angle;
 
     update();
 }
@@ -181,7 +199,7 @@ void ImageView::paintEvent(QPaintEvent *event)
         painter_img.drawRects(storm_areas);
     }
 
-    painter_img.drawImage(uav_point,uav_img);
+    painter_img.drawImage(uav_point,uav_img[uav_angle/45]);
 
     painter_img.setPen(oldpen);
     QImage paintimg = update_img.scaled(rect.width(),rect.height());
