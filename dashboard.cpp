@@ -19,6 +19,8 @@ Dashboard::Dashboard(QWidget *parent) :
     connect(ui->rb_startpoint,SIGNAL(clicked()),this,SLOT(slotSetStartPoint ()));
     connect(ui->rb_endpoint,SIGNAL(clicked()),this,SLOT(slotSetEndPoint ()));
     connect(ui->pb_explore,SIGNAL(clicked()),this,SLOT(slotExplore()));
+    connect(ui->pb_stop,SIGNAL(clicked()),this,SLOT(slotStop()));
+    connect(ui->pb_close,SIGNAL(clicked()),this,SLOT(slotClose()));
     connect(view,SIGNAL(StartPointSet(QPoint)),this,SLOT(slotGetStartPoint(QPoint)));
     connect(view,SIGNAL(EndPointSet(QPoint)),this,SLOT(slotGetEndPoint(QPoint)));
     connect(ui->pb_prevframe,SIGNAL(clicked()),this,SLOT(slotPrevFrame()));
@@ -60,17 +62,21 @@ void Dashboard::slotExplore()
     paths.clear();
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
     path_index = 0;
+    view->SetNonePoint();
     animation_timer.start(50);
+    ui->pb_explore->setEnabled(false);
 }
 
 void Dashboard::slotStop()
 {
-
+    ui->pb_explore->setEnabled(true);
+    ResetUI();
 }
 
 void Dashboard::slotClose()
 {
-
+    animation_timer.stop();
+    close();
 }
 
 void Dashboard::slotSetStartPoint()
@@ -183,6 +189,7 @@ void Dashboard::slotAnimationTimer()
         {
             path_index = paths.size()-1;
             animation_timer.stop();
+            ResetUI();
         }
     }
 }
@@ -358,6 +365,15 @@ int Dashboard::GetUAVAngle(QPoint p1, QPoint p2)
         return 270;
     if(deltaX==-1 && deltaY==-1)
         return 315;
+}
+
+void Dashboard::ResetUI()
+{
+    animation_timer.stop();
+    if(ui->rb_startpoint->isChecked())
+        view->SetStartPoint();
+    else
+        view->SetEndPoint();
 }
 
 
