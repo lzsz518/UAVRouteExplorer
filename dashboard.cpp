@@ -12,6 +12,7 @@ Dashboard::Dashboard(QWidget *parent) :
 {
     ui->setupUi(this);
     view = new ImageView;
+    view->setMinimumSize(300,300);
     ui->layout_image->addWidget(view);
 
     view->SetStartPoint();
@@ -27,6 +28,10 @@ Dashboard::Dashboard(QWidget *parent) :
     connect(ui->pb_nextframe,SIGNAL(clicked()),this,SLOT(slotNextFrame()));
     connect(&animation_timer,SIGNAL(timeout()),this,SLOT(slotAnimationTimer()));
 
+    QDateTime dt;
+    setWindowTitle(dt.currentDateTime().toString());
+
+    setWindowIcon(QIcon(":/Pic/UAV.png"));
     frame_index = 0;
 }
 
@@ -38,33 +43,20 @@ Dashboard::~Dashboard()
 
 void Dashboard::slotOpenImage()
 {
-//    QString fileName= QFileDialog::getOpenFileName(this,
-//         tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
-//    if(fileName.isEmpty())
-//        return;
-
-//    QImage *img = new QImage;
-//    if(img==nullptr)
-//        return;
-
-//    img->load(fileName);
-
-//    storm_images.push_back(img);
-//    if(view!=nullptr)
-//        view->Update(*img);
 
     OpenImages();
 }
 
 void Dashboard::slotExplore()
 {
-//    view->FindPath();
     paths.clear();
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
     path_index = 0;
     view->SetNonePoint();
     animation_timer.start(50);
     ui->pb_explore->setEnabled(false);
+    ui->rb_startpoint->setEnabled(false);
+    ui->rb_endpoint->setEnabled(false);
 }
 
 void Dashboard::slotStop()
@@ -365,6 +357,8 @@ int Dashboard::GetUAVAngle(QPoint p1, QPoint p2)
         return 270;
     if(deltaX==-1 && deltaY==-1)
         return 315;
+
+    return 0;
 }
 
 void Dashboard::ResetUI()
@@ -374,6 +368,10 @@ void Dashboard::ResetUI()
         view->SetStartPoint();
     else
         view->SetEndPoint();
+
+    ui->pb_explore->setEnabled(true);
+    ui->rb_startpoint->setEnabled(true);
+    ui->rb_endpoint->setEnabled(true);
 }
 
 

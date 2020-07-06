@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     AStar.cpp \
+    aboutdialog.cpp \
     dashboard.cpp \
     imageview.cpp \
     main.cpp \
@@ -25,12 +26,14 @@ SOURCES += \
 
 HEADERS += \
     AStar.hpp \
+    aboutdialog.h \
     dashboard.h \
     imageview.h \
     mainwindow.h \
     uavrouteexplorer.h
 
 FORMS += \
+    aboutdialog.ui \
     dashboard.ui \
     mainwindow.ui
 
@@ -41,3 +44,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resource.qrc
+
+#RC_ICONS = UAV.bmp

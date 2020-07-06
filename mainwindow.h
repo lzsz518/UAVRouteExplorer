@@ -16,7 +16,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void slotNewPathExploer();
+    void slotViewCascade();
+    void slotViewTile();
+    void slotExit();
+    void slotAbout();
+
 private:
     Ui::MainWindow *ui;
+
+    QMdiArea mdiarea;
 };
 #endif // MAINWINDOW_H
