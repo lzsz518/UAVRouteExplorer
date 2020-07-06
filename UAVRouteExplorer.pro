@@ -45,4 +45,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     Resource.qrc
 
-#RC_ICONS = UAV.bmp
+RC_ICONS = UAV.ico
