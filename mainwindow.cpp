@@ -1,3 +1,4 @@
+#include <QResizeEvent>
 #include "aboutdialog.h"
 #include "dashboard.h"
 #include "mainwindow.h"
@@ -54,7 +55,12 @@ void MainWindow::slotAbout()
     ad.exec();
 }
 
-
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    mdiarea.setBackground(QBrush(QPixmap(tr(":/Pic/Rainbow-4.jpg")).scaled(
+                     event->size().width(),
+                     event->size().height())));
+}
 
 
 

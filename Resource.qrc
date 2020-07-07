@@ -219,5 +219,6 @@
         <file>QSS/qss_icons/rc/window_undock_pressed@2x.png</file>
         <file>QSS/style.qrc</file>
         <file>QSS/style.qss</file>
+        <file>Pic/Rainbow-4.jpg</file>
     </qresource>
 </RCC>

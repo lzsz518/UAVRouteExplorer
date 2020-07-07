@@ -54,6 +54,7 @@ private:
     void LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas);
     int  ReadNumber(vector<float> &Numbers,const char* NumberStr,int NumberCount);
     int GetUAVAngle(QPoint p1,QPoint p2);
+    void DisableUI();
     void ResetUI();
 };
 

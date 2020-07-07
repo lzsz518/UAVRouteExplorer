@@ -53,10 +53,8 @@ void Dashboard::slotExplore()
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
     path_index = 0;
     view->SetNonePoint();
-    animation_timer.start(50);
-    ui->pb_explore->setEnabled(false);
-    ui->rb_startpoint->setEnabled(false);
-    ui->rb_endpoint->setEnabled(false);
+    DisableUI();
+    animation_timer.start(ui->hs_uavspeed->value());
 }
 
 void Dashboard::slotStop()
@@ -68,7 +66,10 @@ void Dashboard::slotStop()
 void Dashboard::slotClose()
 {
     animation_timer.stop();
-    close();
+    if(parentWidget()!=nullptr)
+        parentWidget()->close();
+    else
+        close();
 }
 
 void Dashboard::slotSetStartPoint()
@@ -233,9 +234,30 @@ QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height
 
     for(QVector<QRect>::const_iterator itor=areas.begin();itor!=areas.end();++itor)
     {
-        for(int i=itor->y();i<itor->y()+itor->height();++i) //Actually only setting bounding box is enough, but that's request 4 loops, the coding more cumbersome than 2 loops
+        QRect r = *itor;
+        if(ui->hs_uavmargin->value()>0)
         {
-            for(int j=itor->x();j<itor->x()+itor->width();++j)
+            int newWidth = r.width()*(1.0+(double)ui->hs_uavmargin->value()/100);
+            int newHeight = r.height()*(1.0+(double)ui->hs_uavmargin->value()/100);
+            int x = r.x() - ((newWidth - r.width())*0.5);
+            int y = r.y() - ((newHeight - r.height())*0.5);
+            if(x<0)
+                x = 0;
+            if(y<0)
+                y = 0;
+            if(x + newWidth>=world_width)
+                newWidth = world_width -x;
+            if(y + newHeight>=world_height)
+                newHeight = world_height - y;
+
+            r.setX(x);
+            r.setY(y);
+            r.setWidth(newWidth);
+            r.setHeight(newHeight);
+        }
+        for(int i=r.y();i<r.y()+r.height();++i) //Actually only setting bounding box is enough, but that's request 4 loops, the coding more cumbersome than 2 loops
+        {
+            for(int j=r.x();j<r.x()+r.width();++j)
             {
                 gen.addCollision({ j , i });
             }
@@ -361,6 +383,15 @@ int Dashboard::GetUAVAngle(QPoint p1, QPoint p2)
     return 0;
 }
 
+void Dashboard::DisableUI()
+{
+    ui->pb_explore->setEnabled(false);
+    ui->rb_startpoint->setEnabled(false);
+    ui->rb_endpoint->setEnabled(false);
+    ui->hs_uavspeed->setEnabled(false);
+    ui->hs_uavmargin->setEnabled(false);
+}
+
 void Dashboard::ResetUI()
 {
     animation_timer.stop();
@@ -372,6 +403,8 @@ void Dashboard::ResetUI()
     ui->pb_explore->setEnabled(true);
     ui->rb_startpoint->setEnabled(true);
     ui->rb_endpoint->setEnabled(true);
+    ui->hs_uavspeed->setEnabled(true);
+    ui->hs_uavmargin->setEnabled(true);
 }
 
 

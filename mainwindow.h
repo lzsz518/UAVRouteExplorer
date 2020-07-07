@@ -25,7 +25,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
     QMdiArea mdiarea;
+
+    void resizeEvent(QResizeEvent *event);
 };
 #endif // MAINWINDOW_H
