@@ -22,7 +22,8 @@ SOURCES += \
     imageview.cpp \
     main.cpp \
     mainwindow.cpp \
-    uavrouteexplorer.cpp
+    uavrouteexplorer.cpp \
+    waintingdialog.cpp
 
 HEADERS += \
     AStar.hpp \
@@ -30,12 +31,14 @@ HEADERS += \
     dashboard.h \
     imageview.h \
     mainwindow.h \
-    uavrouteexplorer.h
+    uavrouteexplorer.h \
+    waintingdialog.h
 
 FORMS += \
     aboutdialog.ui \
     dashboard.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    waintingdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -46,3 +49,10 @@ RESOURCES += \
     Resource.qrc
 
 RC_ICONS = UAV.ico
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39_d
+else:unix: LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39
+
+INCLUDEPATH += $$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/include
+DEPENDPATH += $$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/include

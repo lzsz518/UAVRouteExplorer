@@ -48,6 +48,7 @@ private:
 
     void ClearImage();
     void OpenImages();
+    void RunPython(const QStringList &ImageNames);
     QVector<QPoint> FindPath(const int worldWidth,const int worldHeight, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas);
     QString GetDataFileName(const QString &image_name);
 

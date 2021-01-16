@@ -1,10 +1,16 @@
+#include <QSettings>
+#include <QProcess>
 #include <fstream>
 #include <QFileDialog>
 #include <QVector>
+#include "waintingdialog.h"
 #include "AStar.hpp"
 #include "imageview.h"
 #include "dashboard.h"
 #include "ui_dashboard.h"
+#undef slots
+#include <Python.h>
+#define slots Q_SLOTS
 
 Dashboard::Dashboard(QWidget *parent) :
     QWidget(parent),
@@ -204,6 +210,24 @@ void Dashboard::OpenImages()
     if(fileNames.empty())
         return;
 
+    FILE *file = fopen("./ImageNames.txt","w");
+
+    for(int i=0;i<fileNames.size();++i)
+    {
+        fprintf(file,fileNames[i].toStdString().c_str());
+        fprintf(file,"\n");
+    }
+
+    fclose(file);
+
+    RunPython(fileNames);
+    WaintingDialog wd;
+    QSettings * configIniRead = new QSettings("./Setting.ini",QSettings::IniFormat);
+    int delay = configIniRead->value("Setting/Delay").toInt();
+    wd.SetPara(fileNames.count(),delay);
+    if(wd.exec()==QDialog::Rejected)
+        return;
+
     ClearImage();
     storm_areas.clear();
     paths.clear();
@@ -222,6 +246,45 @@ void Dashboard::OpenImages()
     frame_index = 0;
     QVector<QPoint> p;
     view->Update(*storm_images[0],QPoint(0,0),storm_areas[0],p);
+}
+
+void Dashboard::RunPython(const QStringList &ImageNames)
+{
+    Py_Initialize();
+    PyObject * sys = PyImport_ImportModule("sys");
+//    PyObject * path = PyObject_GetAttrString(sys, "path");
+//    PyList_Append(path, PyUnicode_FromString("."));
+
+//    PyObject * ModuleString = PyUnicode_FromString("demo2");
+//    PyObject * Module = PyImport_Import(ModuleString);
+//    PyObject * Dict = PyModule_GetDict(Module);
+//    PyObject * Func = PyDict_GetItemString(Dict, "printList");
+
+
+//    PyObject * Result = PyObject_CallObject(Func, NULL);
+
+//    PyObject* pModule = nullptr;
+//    PyObject* pFunc = nullptr;
+
+//    pModule = PyImport_ImportModule("./demo2");
+//    if(pModule==nullptr)
+//        return;
+
+//    PyRun_SimpleString("execfile('./demo1.py')");
+    QProcess process;
+    process.execute("py C:/Work_Test/build-UAVRouteExplorer-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/demo1.py");
+
+//	if(Module && PyCallable_Check(Func))
+//    {
+//        PyObject* pArg = PyList_New(0);
+//        PyList_Append(pArg,Py_BuildValue("(s)",ImageNames[0].toStdString().c_str()));
+//        PyObject *args = PyTuple_New(1);
+//        PyTuple_SetItem(args,0,pArg);
+//        PyRun_SimpleString("execfile('demo1.py')");
+////        PyEval_CallObject(Func,args);
+//    }
+
+    Py_Finalize();
 }
 
 QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas)
