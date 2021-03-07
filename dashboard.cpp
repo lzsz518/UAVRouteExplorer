@@ -8,9 +8,9 @@
 #include "imageview.h"
 #include "dashboard.h"
 #include "ui_dashboard.h"
-#undef slots
-#include <Python.h>
-#define slots Q_SLOTS
+//#undef slots
+//#include <Python.h>
+//#define slots Q_SLOTS
 
 Dashboard::Dashboard(QWidget *parent) :
     QWidget(parent),
@@ -250,8 +250,8 @@ void Dashboard::OpenImages()
 
 void Dashboard::RunPython(const QStringList &ImageNames)
 {
-    Py_Initialize();
-    PyObject * sys = PyImport_ImportModule("sys");
+//    Py_Initialize();
+//    PyObject * sys = PyImport_ImportModule("sys");
 //    PyObject * path = PyObject_GetAttrString(sys, "path");
 //    PyList_Append(path, PyUnicode_FromString("."));
 
@@ -284,7 +284,7 @@ void Dashboard::RunPython(const QStringList &ImageNames)
 ////        PyEval_CallObject(Func,args);
 //    }
 
-    Py_Finalize();
+//    Py_Finalize();
 }
 
 QVector<QPoint> Dashboard::FindPath(const int world_width,const int world_height, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas)

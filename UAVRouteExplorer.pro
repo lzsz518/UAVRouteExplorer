@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AStar.cpp \
     aboutdialog.cpp \
+    augmentationparameter.cpp \
     dashboard.cpp \
     imageview.cpp \
     main.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 HEADERS += \
     AStar.hpp \
     aboutdialog.h \
+    augmentationparameter.h \
     dashboard.h \
     imageview.h \
     mainwindow.h \
@@ -36,6 +38,7 @@ HEADERS += \
 
 FORMS += \
     aboutdialog.ui \
+    augmentationparameter.ui \
     dashboard.ui \
     mainwindow.ui \
     waintingdialog.ui
@@ -50,9 +53,9 @@ RESOURCES += \
 
 RC_ICONS = UAV.ico
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39_d
-else:unix: LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39_d
+#else:unix: LIBS += -L$$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/libs/ -lpython39
 
-INCLUDEPATH += $$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/include
-DEPENDPATH += $$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/include
+#INCLUDEPATH += $$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/include
+#DEPENDPATH += $$PWD/../../Users/wenbo.hu/AppData/Local/Programs/Python/Python39/include

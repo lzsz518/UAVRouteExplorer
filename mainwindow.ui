@@ -27,6 +27,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionAug"/>
     <addaction name="actionNewPathExploer"/>
     <addaction name="actionExit"/>
    </widget>
@@ -71,6 +72,11 @@
   <action name="action_About">
    <property name="text">
     <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionAug">
+   <property name="text">
+    <string>Augmentation</string>
    </property>
   </action>
  </widget>
