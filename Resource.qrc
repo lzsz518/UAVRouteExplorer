@@ -220,5 +220,6 @@
         <file>QSS/style.qrc</file>
         <file>QSS/style.qss</file>
         <file>Pic/Rainbow-4.jpg</file>
+        <file>translation_cn.qm</file>
     </qresource>
 </RCC>

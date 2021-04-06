@@ -21,11 +21,21 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAug,&QAction::triggered,this,&MainWindow::slotAugmentation);
 
     setWindowIcon(QIcon(":/Pic/UAV.png"));
+
+    translator_cn = new QTranslator(this);
+    if(translator_cn!=nullptr)
+    {
+        bool result = translator_cn->load(":/translation_cn.qm");
+        result = qApp->installTranslator(translator_cn);
+        ui->retranslateUi(this);
+    }
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    if(translator_cn != nullptr)
+        delete translator_cn;
 }
 
 void MainWindow::slotNewPathExploer()

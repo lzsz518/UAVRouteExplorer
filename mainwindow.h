@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTranslator>
 #include <QMdiArea>
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +28,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QMdiArea mdiarea;
+
+    QTranslator *translator_cn;
 
     void resizeEvent(QResizeEvent *event);
 };
