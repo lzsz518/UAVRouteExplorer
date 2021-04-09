@@ -102,7 +102,7 @@
     <message>
         <location filename="dashboard.cpp" line="208"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
-        <translation type="unfinished">图像文件</translation>
+        <translation type="unfinished">图像文件(*.png *.jpg *.bmp)</translation>
     </message>
 </context>
 <context>
