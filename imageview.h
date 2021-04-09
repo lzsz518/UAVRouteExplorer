@@ -19,6 +19,7 @@ public:
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();
+    void SetPercentageOfDelay(int i);
 
     void FindPath();
 protected:
@@ -42,6 +43,7 @@ private:
     bool isSetStartPoint;
     bool isSetEndPoint;
     bool isSetNonePoint;
+    int percentageofdelay;
     QRect rect;
     QImage *img;
     QTime fps_timer;

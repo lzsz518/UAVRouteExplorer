@@ -45,6 +45,7 @@ private:
     QVector<QImage*> storm_images;
     QVector<QVector<QRect>> storm_areas;
     QVector<QPoint> paths;
+    QVector<QPoint> noncollision_paths;
 
     void ClearImage();
     void OpenImages();

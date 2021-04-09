@@ -40,6 +40,7 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
     uav_img[7] = uav_img[7].scaled(QSize(UAV_ICON_SIZE,UAV_ICON_SIZE));
 
     uav_angle = 0;
+    percentageofdelay = 0;
 }
 
 ImageView::~ImageView()
@@ -105,6 +106,11 @@ void ImageView::SetNonePoint()
     isSetStartPoint = false;
     isSetEndPoint = false;
     isSetNonePoint = true;
+}
+
+void ImageView::SetPercentageOfDelay(int i)
+{
+    percentageofdelay = i;
 }
 
 void ImageView::FindPath()
@@ -204,6 +210,13 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter_img.setPen(oldpen);
     QImage paintimg = update_img.scaled(rect.width(),rect.height());
     painter.drawImage(rect,paintimg);
+
+    QPen pen,old_pen;
+    pen.setColor(Qt::green);
+    painter.setPen(pen);
+    old_pen = painter.pen();
+    painter.drawText(10,30,QString("延误率: %1%").arg(percentageofdelay));
+    painter.setPen(old_pen);
 }
 
 

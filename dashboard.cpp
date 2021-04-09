@@ -23,8 +23,8 @@ Dashboard::Dashboard(QWidget *parent) :
 
     view->SetStartPoint();
     connect(ui->pb_openimage,SIGNAL(clicked()),this,SLOT(slotOpenImage()));
-    connect(ui->rb_startpoint,SIGNAL(clicked()),this,SLOT(slotSetStartPoint ()));
-    connect(ui->rb_endpoint,SIGNAL(clicked()),this,SLOT(slotSetEndPoint ()));
+    connect(ui->rb_startpoint,SIGNAL(clicked()),this,SLOT(slotSetStartPoint()));
+    connect(ui->rb_endpoint,SIGNAL(clicked()),this,SLOT(slotSetEndPoint()));
     connect(ui->pb_explore,SIGNAL(clicked()),this,SLOT(slotExplore()));
     connect(ui->pb_stop,SIGNAL(clicked()),this,SLOT(slotStop()));
     connect(ui->pb_close,SIGNAL(clicked()),this,SLOT(slotClose()));
@@ -57,6 +57,10 @@ void Dashboard::slotExplore()
 {
     paths.clear();
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
+    noncollision_paths.clear();
+    noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,QVector<QRect>());
+    int temp = paths.size()*100/noncollision_paths.size()-100;
+    view->SetPercentageOfDelay(temp);
     path_index = 0;
     view->SetNonePoint();
     DisableUI();
@@ -126,6 +130,9 @@ void Dashboard::slotPrevFrame()
         animation_timer.stop();
         QVector<QPoint> new_path =  FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,storm_areas[frame_index]);
         paths.remove(path_index,paths.size()-path_index);
+        noncollision_paths.clear();
+        noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,QVector<QRect>());
+        view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
         for(int i=0;i<new_path.size();++i)
         {
             paths.push_back(new_path[i]);
@@ -155,6 +162,10 @@ void Dashboard::slotNextFrame()
         animation_timer.stop();
         QVector<QPoint> new_path =  FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,storm_areas[frame_index]);
         paths.remove(path_index,paths.size()-path_index);
+        noncollision_paths.clear();
+        noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,QVector<QRect>());
+        view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
+
         for(int i=0;i<new_path.size();++i)
         {
             paths.push_back(new_path[i]);
