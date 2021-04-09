@@ -272,7 +272,7 @@ void Dashboard::RunPython(const QStringList &ImageNames)
 
 //    PyRun_SimpleString("execfile('./demo1.py')");
     QProcess process;
-    process.execute("py C:/Work_Test/build-UAVRouteExplorer-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/demo1.py");
+    process.execute("python ./yolov4_pytorch/predict.py");
 
 //	if(Module && PyCallable_Check(Func))
 //    {
