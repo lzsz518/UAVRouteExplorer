@@ -86,6 +86,11 @@ void MainWindow::slotAugmentation()
         aug_ini.setValue("Settings/Frames",QString("%1").arg(ap.GetFrames()));
 //        QProcess process;
 //        process.execute("py C:/Work_Test/build-UAVRouteExplorer-Desktop_Qt_5_13_2_MSVC2017_64bit-Debug/demo1.py");
+        QProcess process;
+
+        QString execsteing = "python ../generate_images.py --n_epochs " + QString("%1").arg(ap.GetEpoch()) + " --batch_size " + QString("%1").arg(ap.GetFrames());
+        process.execute(execsteing);
+        //process.execute("python ../generate_images.py");
     }
 }
 
