@@ -15,7 +15,7 @@ public:
     virtual ~ImageView();
 
     void Update(const QImage &image);
-    void Update(const QImage &image, const QPoint current_point,const QVector<QRect> &areas,  const QVector<QPoint> &_path, int const angle=0);
+    void Update(const QImage &image, const QPoint current_point,const QVector<QRect> &areas,  const QVector<QPoint> &_path, int const angle=0,const QVector<float> &reliability = QVector<float>());
     void SetStartPoint();
     void SetEndPoint();
     void SetNonePoint();
@@ -49,11 +49,13 @@ private:
     QTime fps_timer;
     QImage uav_img[UAV_IMAGE_NUMBER];
 
+    QFont font;
     QPoint start_point;
     QPoint end_point;
     QPoint uav_point;
     QVector<QRect> storm_areas;
     QVector<QPoint> path;
+    QVector<float> storm_reliability;
 };
 
 #endif // IMAGEVIEW_H

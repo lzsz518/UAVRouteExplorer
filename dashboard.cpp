@@ -3,6 +3,7 @@
 #include <fstream>
 #include <QFileDialog>
 #include <QVector>
+#include <QMessageBox>
 #include "waintingdialog.h"
 #include "AStar.hpp"
 #include "imageview.h"
@@ -55,6 +56,11 @@ void Dashboard::slotOpenImage()
 
 void Dashboard::slotExplore()
 {
+    if(storm_images.empty())
+    {
+        QMessageBox::information(this,"信息","请选择图像");
+        return;
+    }
     paths.clear();
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
     noncollision_paths.clear();
@@ -142,7 +148,7 @@ void Dashboard::slotPrevFrame()
     else
     {
         QVector<QPoint> p;
-        view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+        view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p,0,storm_reliability[frame_index]);
     }
 
 }
@@ -175,7 +181,7 @@ void Dashboard::slotNextFrame()
     else
     {
         QVector<QPoint> p;
-        view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p);
+        view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p,0,storm_reliability[frame_index]);
     }
 }
 
@@ -193,7 +199,7 @@ void Dashboard::slotAnimationTimer()
             angle = GetUAVAngle(paths[path_index-1],paths[path_index]);
         }
 
-        view->Update(*storm_images[frame_index],paths[path_index],storm_areas[frame_index],paths,angle);
+        view->Update(*storm_images[frame_index],paths[path_index],storm_areas[frame_index],paths,angle,storm_reliability[frame_index]);
         ++path_index;
         if(path_index >= paths.size())
         {
@@ -242,6 +248,7 @@ void Dashboard::OpenImages()
     ClearImage();
     storm_areas.clear();
     paths.clear();
+    storm_reliability.clear();
 
     for(int i=0;i<fileNames.size();++i)
     {
@@ -250,13 +257,15 @@ void Dashboard::OpenImages()
         storm_images.push_back(img);
         QString dataFineName = GetDataFileName(fileNames[i]);
         QVector<QRect> areas;
-        LoadTxtFile(dataFineName.toStdString().c_str(),img->width(),img->height(),areas);
+        QVector<float> rel;
+        LoadTxtFile(dataFineName.toStdString().c_str(),img->width(),img->height(),areas,rel);
         storm_areas.push_back(areas);
+        storm_reliability.push_back(rel);
     }
 
     frame_index = 0;
     QVector<QPoint> p;
-    view->Update(*storm_images[0],QPoint(0,0),storm_areas[0],p);
+    view->Update(*storm_images[0],QPoint(0,0),storm_areas[0],p,0,storm_reliability[0]);
 }
 
 void Dashboard::RunPython(const QStringList &ImageNames)
@@ -357,9 +366,10 @@ QString Dashboard::GetDataFileName(const QString &image_name)
 }
 
 
-void Dashboard::LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas)
+void Dashboard::LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas, QVector<float> &rel)
 {
     areas.clear();
+    rel.clear();
     fstream fin;
     fin.open(pathName,fstream::in);
     if(!fin.is_open())
@@ -373,8 +383,8 @@ void Dashboard::LoadTxtFile(const char *pathName, const int width, const int hei
 
     while(fin.getline(Line,line_len))
     {
-        ReadNumber(data,Line, 5);
-        if(data.size()==5)
+        ReadNumber(data,Line, 6);
+        if(data.size()==6)
         {
             QRect r;
             int left,top;
@@ -389,6 +399,7 @@ void Dashboard::LoadTxtFile(const char *pathName, const int width, const int hei
             r.setWidth(halfw<<1);
             r.setHeight(halfh<<1);
             areas.push_back(r);
+            rel.push_back(data[5]);
         }
         memset(Line,0,line_len);
     }

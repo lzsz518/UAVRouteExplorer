@@ -41,6 +41,10 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
 
     uav_angle = 0;
     percentageofdelay = 0;
+
+    font.setFamily(font.defaultFamily());
+    font.setPointSize(12);
+    font.setBold(true);
 }
 
 ImageView::~ImageView()
@@ -63,7 +67,7 @@ void ImageView::Update(const QImage &image)
     update();
 }
 
-void ImageView::Update(const QImage &image, const QPoint current_point, const QVector<QRect> &areas, const QVector<QPoint> &_path, const int angle)
+void ImageView::Update(const QImage &image, const QPoint current_point, const QVector<QRect> &areas, const QVector<QPoint> &_path, const int angle, const QVector<float> &reliability)
 {
     if(img!=nullptr)
     {
@@ -79,6 +83,8 @@ void ImageView::Update(const QImage &image, const QPoint current_point, const QV
     path = _path;
     storm_areas.clear();
     storm_areas = areas;
+    storm_reliability.clear();
+    storm_reliability = reliability;
     uav_point = current_point;
     uav_point.rx() -= UAV_ICON_SIZE * 0.5;
     uav_point.ry() -= UAV_ICON_SIZE * 0.5;
@@ -200,9 +206,11 @@ void ImageView::paintEvent(QPaintEvent *event)
 
     newpen.setColor(Qt::blue);
     painter_img.setPen(newpen);
+    painter_img.setFont(font);
     for(int i=0;i<storm_areas.size();++i)
     {
-        painter_img.drawRects(storm_areas);
+        painter_img.drawRect(storm_areas[i]);
+        painter_img.drawText(storm_areas[i].x(),storm_areas[i].y()-5,QString("%1").arg(storm_reliability[i]));
     }
 
     painter_img.drawImage(uav_point,uav_img[uav_angle/45]);
@@ -215,6 +223,7 @@ void ImageView::paintEvent(QPaintEvent *event)
     pen.setColor(Qt::green);
     painter.setPen(pen);
     old_pen = painter.pen();
+    painter.setFont(font);
     painter.drawText(10,30,QString("延误率: %1%").arg(percentageofdelay));
     painter.setPen(old_pen);
 }

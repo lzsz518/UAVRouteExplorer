@@ -44,6 +44,7 @@ private:
 
     QVector<QImage*> storm_images;
     QVector<QVector<QRect>> storm_areas;
+    QVector<QVector<float>> storm_reliability;
     QVector<QPoint> paths;
     QVector<QPoint> noncollision_paths;
 
@@ -53,7 +54,7 @@ private:
     QVector<QPoint> FindPath(const int worldWidth,const int worldHeight, const QPoint start_point, const QPoint end_point, const QVector<QRect> &areas);
     QString GetDataFileName(const QString &image_name);
 
-    void LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas);
+    void LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas, QVector<float> &rel);
     int  ReadNumber(vector<float> &Numbers,const char* NumberStr,int NumberCount);
     int GetUAVAngle(QPoint p1,QPoint p2);
     void DisableUI();
