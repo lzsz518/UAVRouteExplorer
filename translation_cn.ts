@@ -45,17 +45,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="27"/>
+        <location filename="dashboard.ui" line="58"/>
         <source>UAV Speed</source>
         <translation type="unfinished">无人机速度</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="67"/>
+        <location filename="dashboard.ui" line="41"/>
         <source>starting point</source>
         <translation type="unfinished">起始点</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="77"/>
+        <location filename="dashboard.ui" line="51"/>
         <source>ending point  </source>
         <translation type="unfinished">终止点</translation>
     </message>
@@ -65,42 +65,47 @@
         <translation type="unfinished">躲避边界</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="131"/>
+        <location filename="dashboard.ui" line="127"/>
+        <source>Reliability Threshold</source>
+        <translation type="unfinished">置信度阈值</translation>
+    </message>
+    <message>
+        <location filename="dashboard.ui" line="151"/>
         <source>OpenImage</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="138"/>
+        <location filename="dashboard.ui" line="158"/>
         <source>Explore</source>
         <translation type="unfinished">寻路</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="145"/>
+        <location filename="dashboard.ui" line="165"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="152"/>
+        <location filename="dashboard.ui" line="172"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="159"/>
+        <location filename="dashboard.ui" line="179"/>
         <source>Stop</source>
         <translation type="unfinished">停止</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="166"/>
+        <location filename="dashboard.ui" line="186"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
     <message>
-        <location filename="dashboard.cpp" line="208"/>
+        <location filename="dashboard.cpp" line="225"/>
         <source>Open Image</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.cpp" line="208"/>
+        <location filename="dashboard.cpp" line="225"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation type="unfinished">图像文件(*.png *.jpg *.bmp)</translation>
     </message>
@@ -158,7 +163,7 @@
         <translation type="unfinished">增广</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="64"/>
+        <location filename="mainwindow.cpp" line="74"/>
         <source>:/Pic/Rainbow-4.jpg</source>
         <translation type="unfinished"></translation>
     </message>

@@ -366,7 +366,7 @@ QString Dashboard::GetDataFileName(const QString &image_name)
 }
 
 
-void Dashboard::LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas, QVector<float> &rel)
+void Dashboard::LoadTxtFile(const char *pathName, const int width, const int height, QVector<QRect> &areas, QVector<float> &rel, const double relth)
 {
     areas.clear();
     rel.clear();
@@ -386,6 +386,8 @@ void Dashboard::LoadTxtFile(const char *pathName, const int width, const int hei
         ReadNumber(data,Line, 6);
         if(data.size()==6)
         {
+            if(data[5]<relth)
+                continue;
             QRect r;
             int left,top;
             int halfw,halfh;

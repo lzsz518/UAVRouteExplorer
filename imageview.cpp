@@ -1,3 +1,4 @@
+#include <QRandomGenerator>
 #include "AStar.hpp"
 #include <QApplication>
 #include <Windows.h>
@@ -45,6 +46,11 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
     font.setFamily(font.defaultFamily());
     font.setPointSize(12);
     font.setBold(true);
+
+    launch_delay = 0;
+    landing_delay = 0;
+    temp1 = QRandomGenerator::global()->bounded(9);
+    temp2 = QRandomGenerator::global()->bounded(9);
 }
 
 ImageView::~ImageView()
@@ -91,6 +97,7 @@ void ImageView::Update(const QImage &image, const QPoint current_point, const QV
 
     uav_angle = angle;
 
+    CalculateDelayRate();
     update();
 }
 
@@ -224,7 +231,9 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter.setPen(pen);
     old_pen = painter.pen();
     painter.setFont(font);
-    painter.drawText(10,30,QString("延误率: %1%").arg(percentageofdelay));
+    painter.drawText(10,30,QString("关键任务延误率: %1%").arg(percentageofdelay));
+    painter.drawText(10,50,QString("起飞延误率: %1%").arg(launch_delay));
+    painter.drawText(10,70,QString("降落延误率: %1%").arg(landing_delay));
     painter.setPen(old_pen);
 }
 
@@ -318,4 +327,54 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
     }
 
     update();
+}
+
+void ImageView::CalculateDelayRate()
+{
+    if(storm_areas.empty())
+        return;
+
+    double start_dis =0;
+    double end_dis = 0;
+    for(int i=0;i<storm_areas.size();++i)
+    {
+        QPoint center = storm_areas[i].center();
+        start_dis += sqrt(pow(center.x()-start_point.x(),2)+pow(center.y()-start_point.y(),2));
+        end_dis += sqrt(pow(center.x()-end_point.x(),2)+pow(center.y()-end_point.y(),2));
+    }
+
+    start_dis /= storm_areas.size();
+    end_dis /= storm_areas.size();
+
+    if(start_dis<30)
+        launch_delay = 60;
+    if(start_dis>30 && start_dis<80)
+        launch_delay = 50;
+    if(start_dis>80 && start_dis<130)
+        launch_delay = 40;
+    if(start_dis>130 && start_dis<180)
+        launch_delay = 30;
+    if(start_dis>180 && start_dis<230)
+        launch_delay = 20;
+    if(start_dis>230)
+        launch_delay = 0;
+
+    if(end_dis<30)
+        landing_delay = 60;
+    if(end_dis>30 && end_dis<80)
+        landing_delay = 50;
+    if(end_dis>80 && end_dis<130)
+        landing_delay = 40;
+    if(end_dis>130 && end_dis<180)
+        landing_delay = 30;
+    if(end_dis>180 && end_dis<230)
+        landing_delay = 20;
+    if(end_dis>230)
+        landing_delay = 0;
+
+
+    if(launch_delay>0)
+        launch_delay += temp1;
+    if(landing_delay>0)
+        landing_delay += temp1;
 }

@@ -29,6 +29,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
+    void CalculateDelayRate();
 signals:
     void StartPointSet(QPoint);
     void EndPointSet(QPoint);
@@ -40,6 +41,10 @@ private:
     double r1;
     double r2;
     double fps;
+    double launch_delay;
+    double landing_delay;
+    double temp1;
+    double temp2;
     bool isSetStartPoint;
     bool isSetEndPoint;
     bool isSetNonePoint;
