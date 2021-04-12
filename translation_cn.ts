@@ -115,7 +115,7 @@
     <message>
         <location filename="imageview.cpp" line="234"/>
         <source>Main Task Delay Rate: %1%</source>
-        <translation type="unfinished">关键人物延误率：%1%</translation>
+        <translation type="unfinished">关键任务延误率：%1%</translation>
     </message>
     <message>
         <location filename="imageview.cpp" line="235"/>
