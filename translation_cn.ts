@@ -70,32 +70,32 @@
         <translation type="unfinished">置信度阈值</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="151"/>
+        <location filename="dashboard.ui" line="154"/>
         <source>OpenImage</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="158"/>
+        <location filename="dashboard.ui" line="161"/>
         <source>Explore</source>
         <translation type="unfinished">寻路</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="165"/>
+        <location filename="dashboard.ui" line="168"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="172"/>
+        <location filename="dashboard.ui" line="175"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="179"/>
+        <location filename="dashboard.ui" line="182"/>
         <source>Stop</source>
         <translation type="unfinished">停止</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="186"/>
+        <location filename="dashboard.ui" line="189"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
@@ -108,6 +108,24 @@
         <location filename="dashboard.cpp" line="225"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation type="unfinished">图像文件(*.png *.jpg *.bmp)</translation>
+    </message>
+</context>
+<context>
+    <name>ImageView</name>
+    <message>
+        <location filename="imageview.cpp" line="234"/>
+        <source>Main Task Delay Rate: %1%</source>
+        <translation type="unfinished">关键人物延误率：%1%</translation>
+    </message>
+    <message>
+        <location filename="imageview.cpp" line="235"/>
+        <source>LanchDelayRate: %1%</source>
+        <translation type="unfinished">起飞延误率：%1%</translation>
+    </message>
+    <message>
+        <location filename="imageview.cpp" line="236"/>
+        <source>Landing Delay Rate: %1%</source>
+        <translation type="unfinished">降落延误率：%1%</translation>
     </message>
 </context>
 <context>

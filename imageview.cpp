@@ -44,7 +44,7 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
     percentageofdelay = 0;
 
     font.setFamily(font.defaultFamily());
-    font.setPointSize(12);
+    font.setPointSize(10);
     font.setBold(true);
 
     launch_delay = 0;
@@ -231,9 +231,9 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter.setPen(pen);
     old_pen = painter.pen();
     painter.setFont(font);
-    painter.drawText(10,30,QString("关键任务延误率: %1%").arg(percentageofdelay));
-    painter.drawText(10,50,QString("起飞延误率: %1%").arg(launch_delay));
-    painter.drawText(10,70,QString("降落延误率: %1%").arg(landing_delay));
+    painter.drawText(10,30,QString(tr("Main Task Delay Rate: %1%")).arg(percentageofdelay));
+    painter.drawText(10,50,QString(tr("LanchDelayRate: %1%")).arg(launch_delay));
+    painter.drawText(10,70,QString(tr("Landing Delay Rate: %1%")).arg(landing_delay));
     painter.setPen(old_pen);
 }
 
