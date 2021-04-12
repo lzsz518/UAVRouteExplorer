@@ -127,6 +127,11 @@
         <source>Landing Delay Rate: %1%</source>
         <translation type="unfinished">降落延误率：%1%</translation>
     </message>
+    <message>
+        <location filename="imageview.cpp" line="239"/>
+        <source>Blue number is reliability</source>
+        <translation type="unfinished">蓝色数字表示置信度</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

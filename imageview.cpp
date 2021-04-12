@@ -234,6 +234,9 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter.drawText(10,30,QString(tr("Main Task Delay Rate: %1%")).arg(percentageofdelay));
     painter.drawText(10,50,QString(tr("LanchDelayRate: %1%")).arg(launch_delay));
     painter.drawText(10,70,QString(tr("Landing Delay Rate: %1%")).arg(landing_delay));
+    pen.setColor(Qt::blue);
+    painter.setPen(pen);
+    painter.drawText(10,90,QString(tr("Blue number is reliability")).arg(landing_delay));
     painter.setPen(old_pen);
 }
 
