@@ -138,7 +138,7 @@
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>UAVRouteExplorer</source>
-        <translation type="unfinished">无人机寻路者</translation>
+        <translation type="unfinished">航迹规划模拟器</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="28"/>
@@ -186,9 +186,20 @@
         <translation type="unfinished">增广</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="74"/>
+        <location filename="mainwindow.cpp" line="75"/>
         <source>:/Pic/Rainbow-4.jpg</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="95"/>
+        <source>Information</source>
+        <translatorcomment>%1 图像已增广</translatorcomment>
+        <translation type="unfinished">消息</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="95"/>
+        <source>%1 frames augmented.</source>
+        <translation type="unfinished">%1 幅图像已增广</translation>
     </message>
 </context>
 <context>
