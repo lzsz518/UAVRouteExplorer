@@ -92,7 +92,7 @@ void MainWindow::slotAugmentation()
         QString execsteing = "python ../generate_images.py --n_epochs " + QString("%1").arg(ap.GetEpoch()) + " --batch_size " + QString("%1").arg(ap.GetFrames());
         process.execute(execsteing);
         //process.execute("python ../generate_images.py");
-        QMessageBox::information(this,tr("Information"),QString(tr("%1 frames augmented.")).arg(ap.GetFrames()));
+        QMessageBox::information(this,tr("Information"),QString(tr("%1 frames augmented.")).arg(ap.GetFrames()*ap.GetEpoch()));
     }
 }
 
