@@ -33,6 +33,7 @@ protected:
 signals:
     void StartPointSet(QPoint);
     void EndPointSet(QPoint);
+    void RiskRatePointSet(QPoint);
 
 private:
     int uav_angle;

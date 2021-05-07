@@ -34,6 +34,7 @@ Dashboard::Dashboard(QWidget *parent) :
     connect(ui->pb_prevframe,SIGNAL(clicked()),this,SLOT(slotPrevFrame()));
     connect(ui->pb_nextframe,SIGNAL(clicked()),this,SLOT(slotNextFrame()));
     connect(&animation_timer,SIGNAL(timeout()),this,SLOT(slotAnimationTimer()));
+    connect(view,SIGNAL(RiskRatePointSet(QPoint)),this,SLOT(slotRiskRatePoint(QPoint)));
 
     QDateTime dt;
     setWindowTitle(dt.currentDateTime().toString());
@@ -151,6 +152,7 @@ void Dashboard::slotPrevFrame()
         view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p,0,storm_reliability[frame_index]);
     }
 
+    slotRiskRatePoint(riskrate_point);
 }
 
 void Dashboard::slotNextFrame()
@@ -183,6 +185,8 @@ void Dashboard::slotNextFrame()
         QVector<QPoint> p;
         view->Update(*storm_images[frame_index],start_point,storm_areas[frame_index],p,0,storm_reliability[frame_index]);
     }
+
+    slotRiskRatePoint(riskrate_point);
 }
 
 void Dashboard::slotAnimationTimer()
@@ -210,6 +214,24 @@ void Dashboard::slotAnimationTimer()
     }
 }
 
+void Dashboard::slotRiskRatePoint(QPoint p)
+{
+    riskrate_point = p;
+    int riskrate = 0;
+    for(size_t i=0;i<storm_areas[frame_index].size();++i)
+    {
+        if(storm_areas[frame_index][i].contains(p))
+        {
+            riskrate = rand()%20 + 40;
+            ui->le_riskrate->setText(QString("%1").arg(riskrate));
+            return;
+        }
+    }
+
+    riskrate = rand()%4+1;
+    ui->le_riskrate->setText(QString("%1").arg(riskrate));
+}
+
 void Dashboard::ClearImage()
 {
     for(QVector<QImage*>::iterator itor= storm_images.begin();itor!=storm_images.end();++itor)
@@ -227,23 +249,23 @@ void Dashboard::OpenImages()
     if(fileNames.empty())
         return;
 
-    FILE *file = fopen("./ImageNames.txt","w");
+//    FILE *file = fopen("./ImageNames.txt","w");
 
-    for(int i=0;i<fileNames.size();++i)
-    {
-        fprintf(file,fileNames[i].toStdString().c_str());
-        fprintf(file,"\n");
-    }
+//    for(int i=0;i<fileNames.size();++i)
+//    {
+//        fprintf(file,"%s", fileNames[i].toStdString().c_str());
+//        fprintf(file,"\n");
+//    }
 
-    fclose(file);
+//    fclose(file);
 
-    RunPython(fileNames);
-    WaintingDialog wd;
-    QSettings * configIniRead = new QSettings("./Setting.ini",QSettings::IniFormat);
-    int delay = configIniRead->value("Setting/Delay").toInt();
-    wd.SetPara(fileNames.count(),delay);
-    if(wd.exec()==QDialog::Rejected)
-        return;
+//    RunPython(fileNames);
+//    WaintingDialog wd;
+//    QSettings * configIniRead = new QSettings("./Setting.ini",QSettings::IniFormat);
+//    int delay = configIniRead->value("Setting/Delay").toInt();
+//    wd.SetPara(fileNames.count(),delay);
+//    if(wd.exec()==QDialog::Rejected)
+//        return;
 
     ClearImage();
     storm_areas.clear();

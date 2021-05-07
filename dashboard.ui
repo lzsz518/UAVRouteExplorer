@@ -28,34 +28,10 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="le_endX">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="rb_startpoint">
+       <item row="1" column="5">
+        <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>starting point</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QRadioButton" name="rb_endpoint">
-         <property name="text">
-          <string>ending point  </string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>UAV Speed</string>
+          <string>Reliability Threshold</string>
          </property>
         </widget>
        </item>
@@ -75,20 +51,6 @@
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLineEdit" name="le_endY">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="le_startX">
-         <property name="enabled">
-          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -121,14 +83,52 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="5">
-        <widget class="QLabel" name="label_3">
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="rb_startpoint">
          <property name="text">
-          <string>Reliability Threshold</string>
+          <string>starting point</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="2" column="5">
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="le_endX">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="le_endY">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="le_startX">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>UAV Speed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QRadioButton" name="rb_endpoint">
+         <property name="text">
+          <string>ending point  </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
         <widget class="QDoubleSpinBox" name="dsb_relTh">
          <property name="minimum">
           <double>0.100000000000000</double>
@@ -141,6 +141,20 @@
          </property>
          <property name="value">
           <double>0.300000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Risk Rate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6">
+        <widget class="QLineEdit" name="le_riskrate">
+         <property name="enabled">
+          <bool>false</bool>
          </property>
         </widget>
        </item>

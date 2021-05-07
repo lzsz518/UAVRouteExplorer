@@ -45,57 +45,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="58"/>
+        <location filename="dashboard.ui" line="120"/>
         <source>UAV Speed</source>
         <translation type="unfinished">无人机速度</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="41"/>
+        <location filename="dashboard.ui" line="89"/>
         <source>starting point</source>
         <translation type="unfinished">起始点</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="51"/>
+        <location filename="dashboard.ui" line="127"/>
         <source>ending point  </source>
         <translation type="unfinished">终止点</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="98"/>
+        <location filename="dashboard.ui" line="60"/>
         <source>UAV Margin</source>
         <translation type="unfinished">躲避边界</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="127"/>
+        <location filename="dashboard.ui" line="34"/>
         <source>Reliability Threshold</source>
         <translation type="unfinished">置信度阈值</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="154"/>
+        <location filename="dashboard.ui" line="150"/>
+        <source>Risk Rate</source>
+        <translation type="unfinished">风险度</translation>
+    </message>
+    <message>
+        <location filename="dashboard.ui" line="164"/>
         <source>OpenImage</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="161"/>
+        <location filename="dashboard.ui" line="171"/>
         <source>Explore</source>
         <translation type="unfinished">寻路</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="168"/>
+        <location filename="dashboard.ui" line="178"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="175"/>
+        <location filename="dashboard.ui" line="185"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="182"/>
+        <location filename="dashboard.ui" line="192"/>
         <source>Stop</source>
         <translation type="unfinished">停止</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="189"/>
+        <location filename="dashboard.ui" line="199"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>

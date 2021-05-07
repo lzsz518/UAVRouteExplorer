@@ -281,37 +281,38 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
 {
     if(img==nullptr)
         return;
+
+    int x = event->x();
+    int y = event->y();
+    if(r1>=r2)
+    {
+        x *= r1;
+        y = (y-rect.y())*r1;
+        if(x<0)
+            x = 0;
+        if(x>=img->width())
+            x = img->width()-1;
+        if(y<0)
+            y = 0;
+        if(y>=img->height())
+            y = img->height()-1;
+    }
+    else
+    {
+        x  = (x-rect.x()) *r2;
+        y = y *r2;
+        if(x<0)
+            x = 0;
+        if(x>=img->width())
+            x = img->width()-1;
+        if(y<0)
+            y = 0;
+        if(y>=img->height())
+            y = img->height()-1;
+    }
+
     if(event->button() == Qt::LeftButton)
     {
-        int x = event->x();
-        int y = event->y();
-        if(r1>=r2)
-        {
-            x *= r1;
-            y = (y-rect.y())*r1;
-            if(x<0)
-                x = 0;
-            if(x>=img->width())
-                x = img->width()-1;
-            if(y<0)
-                y = 0;
-            if(y>=img->height())
-                y = img->height()-1;
-        }
-        else
-        {
-            x  = (x-rect.x()) *r2;
-            y = y *r2;
-            if(x<0)
-                x = 0;
-            if(x>=img->width())
-                x = img->width()-1;
-            if(y<0)
-                y = 0;
-            if(y>=img->height())
-                y = img->height()-1;
-        }
-
         if(isSetStartPoint)
         {
             start_point.setX(x);
@@ -327,6 +328,11 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
             end_point.setY(y);
             EndPointSet(QPoint(x,y));
         }
+    }
+
+    if(event->button() == Qt::RightButton)
+    {
+        RiskRatePointSet(QPoint(x,y));
     }
 
     update();

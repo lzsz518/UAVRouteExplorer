@@ -33,6 +33,7 @@ private slots:
     void slotPrevFrame();
     void slotNextFrame();
     void slotAnimationTimer();
+    void slotRiskRatePoint(QPoint p);
 private:
     int frame_index;
     int path_index;
@@ -40,6 +41,7 @@ private:
     ImageView *view;
     QPoint start_point;
     QPoint end_point;
+    QPoint riskrate_point;
     QTimer animation_timer;
 
     QVector<QImage*> storm_images;
