@@ -24,7 +24,7 @@ private:
     int count;
 
     void showEvent(QShowEvent *event);
-private slots:
+public slots:
     void slotStart();
 
 };

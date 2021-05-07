@@ -4,9 +4,10 @@
 #include <QProcess>
 #include "aboutdialog.h"
 #include "dashboard.h"
-#include "mainwindow.h"
 #include "augmentationparameter.h"
+#include "waintingdialog.h"
 #include "ui_mainwindow.h"
+#include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::slotExit);
     connect(ui->action_About,&QAction::triggered,this,&MainWindow::slotAbout);
     connect(ui->actionAug,&QAction::triggered,this,&MainWindow::slotAugmentation);
+    connect(ui->actionDI,&QAction::triggered,this,&MainWindow::slotDataImport);
 
     setWindowIcon(QIcon(":/Pic/UAV.png"));
 
@@ -96,4 +98,10 @@ void MainWindow::slotAugmentation()
     }
 }
 
+void MainWindow::slotDataImport()
+{
+    WaintingDialog wd;
+    wd.SetPara(5000,1);
+    wd.exec();
+}
 

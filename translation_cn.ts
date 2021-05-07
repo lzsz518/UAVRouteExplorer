@@ -146,58 +146,63 @@
         <translation type="unfinished">文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="36"/>
+        <location filename="mainwindow.ui" line="37"/>
         <source>&amp;View</source>
         <translation type="unfinished">视图</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="43"/>
+        <location filename="mainwindow.ui" line="44"/>
         <source>&amp;Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="54"/>
+        <location filename="mainwindow.ui" line="55"/>
         <source>&amp;NewPathExploer</source>
         <translation type="unfinished">新建寻路</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="59"/>
+        <location filename="mainwindow.ui" line="60"/>
         <source>&amp;Exit</source>
         <translation type="unfinished">退出</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="64"/>
+        <location filename="mainwindow.ui" line="65"/>
         <source>&amp;Cascade</source>
         <translation type="unfinished">堆叠</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="69"/>
+        <location filename="mainwindow.ui" line="70"/>
         <source>&amp;Tile</source>
         <translation type="unfinished">排列</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="74"/>
+        <location filename="mainwindow.ui" line="75"/>
         <source>&amp;About</source>
         <translation type="unfinished">关于</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="79"/>
+        <location filename="mainwindow.ui" line="80"/>
         <source>Augmentation</source>
         <translation type="unfinished">增广</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="75"/>
+        <location filename="mainwindow.ui" line="88"/>
+        <source>DataImport</source>
+        <translation type="unfinished">数据导入</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="77"/>
         <source>:/Pic/Rainbow-4.jpg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="95"/>
+        <location filename="mainwindow.cpp" line="97"/>
         <source>Information</source>
         <translatorcomment>%1 图像已增广</translatorcomment>
         <translation type="unfinished">消息</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="95"/>
+        <location filename="mainwindow.cpp" line="97"/>
         <source>%1 frames augmented.</source>
         <translation type="unfinished">%1 幅图像已增广</translation>
     </message>
@@ -212,12 +217,31 @@
     <message>
         <location filename="waintingdialog.ui" line="20"/>
         <source>Processing image data, please waiting...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">正在倒入数据，请等待......</translation>
     </message>
     <message>
         <location filename="waintingdialog.ui" line="36"/>
+        <source>Import</source>
+        <translation type="unfinished">导入数据</translation>
+    </message>
+    <message>
         <source>Start</source>
-        <translation type="unfinished">开始</translation>
+        <translation type="obsolete">开始</translation>
+    </message>
+    <message>
+        <location filename="waintingdialog.cpp" line="39"/>
+        <source>Open Data File</source>
+        <translation type="unfinished">打开数据文件</translation>
+    </message>
+    <message>
+        <location filename="waintingdialog.cpp" line="39"/>
+        <source>Data Files (*.txt)</source>
+        <translation type="unfinished">数据文件</translation>
+    </message>
+    <message>
+        <location filename="waintingdialog.cpp" line="56"/>
+        <source>Data import succeed.</source>
+        <translation type="unfinished">数据导入成功.</translation>
     </message>
 </context>
 </TS>

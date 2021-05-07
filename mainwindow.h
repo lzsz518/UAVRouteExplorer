@@ -24,6 +24,7 @@ private slots:
     void slotExit();
     void slotAbout();
     void slotAugmentation();
+    void slotDataImport();
 
 private:
     Ui::MainWindow *ui;

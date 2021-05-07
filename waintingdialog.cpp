@@ -1,3 +1,5 @@
+#include <QFileDialog>
+#include <QMessageBox>
 #include <QThread>
 #include "waintingdialog.h"
 #include "ui_waintingdialog.h"
@@ -33,6 +35,12 @@ void WaintingDialog::showEvent(QShowEvent *event)
 
 void WaintingDialog::slotStart()
 {
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("Open Data File"), "/home", tr("Data Files (*.txt)"));
+
+    if(fileName.isEmpty())
+        return;
+
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(_imagenum*_sleeptime-1);
     int minsleeptime = _sleeptime/1000;
@@ -44,6 +52,8 @@ void WaintingDialog::slotStart()
         QThread::msleep(minsleeptime);
         QApplication::processEvents(QEventLoop::AllEvents);
     }
+
+    QMessageBox::information(nullptr,"",tr("Data import succeed."));
 
     accept();
 }
