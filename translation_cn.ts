@@ -222,7 +222,7 @@
     <message>
         <location filename="waintingdialog.ui" line="20"/>
         <source>Processing image data, please waiting...</source>
-        <translation type="unfinished">正在倒入数据，请等待......</translation>
+        <translation type="unfinished">正在导入数据，请等待......</translation>
     </message>
     <message>
         <location filename="waintingdialog.ui" line="36"/>
