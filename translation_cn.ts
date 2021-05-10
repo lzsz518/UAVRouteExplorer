@@ -241,7 +241,7 @@
     <message>
         <location filename="waintingdialog.cpp" line="39"/>
         <source>Data Files (*.txt)</source>
-        <translation type="unfinished">数据文件</translation>
+        <translation type="unfinished">数据文件(*.txt)</translation>
     </message>
     <message>
         <location filename="waintingdialog.cpp" line="56"/>
