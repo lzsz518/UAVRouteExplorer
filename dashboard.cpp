@@ -138,7 +138,7 @@ void Dashboard::slotPrevFrame()
         QVector<QPoint> new_path =  FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,storm_areas[frame_index]);
         paths.remove(path_index,paths.size()-path_index);
         noncollision_paths.clear();
-        noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,QVector<QRect>());
+        noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index-1],end_point,QVector<QRect>());
         view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
         for(int i=0;i<new_path.size();++i)
         {
@@ -171,7 +171,7 @@ void Dashboard::slotNextFrame()
         QVector<QPoint> new_path =  FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,storm_areas[frame_index]);
         paths.remove(path_index,paths.size()-path_index);
         noncollision_paths.clear();
-        noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index],end_point,QVector<QRect>());
+        noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index-1],end_point,QVector<QRect>());
         view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
 
         for(int i=0;i<new_path.size();++i)
@@ -193,6 +193,8 @@ void Dashboard::slotAnimationTimer()
 {
     if(view!=nullptr)
     {
+        if(paths.size()<2)
+            return;
         int angle;
         if(path_index+1<paths.size())
         {
