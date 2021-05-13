@@ -75,42 +75,42 @@
         <translation type="unfinished">风险度</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="164"/>
+        <location filename="dashboard.ui" line="168"/>
         <source>OpenImage</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="171"/>
+        <location filename="dashboard.ui" line="175"/>
         <source>Explore</source>
         <translation type="unfinished">寻路</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="178"/>
+        <location filename="dashboard.ui" line="182"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="185"/>
+        <location filename="dashboard.ui" line="189"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="192"/>
+        <location filename="dashboard.ui" line="196"/>
         <source>Stop</source>
         <translation type="unfinished">停止</translation>
     </message>
     <message>
-        <location filename="dashboard.ui" line="199"/>
+        <location filename="dashboard.ui" line="203"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
     <message>
-        <location filename="dashboard.cpp" line="225"/>
+        <location filename="dashboard.cpp" line="249"/>
         <source>Open Image</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.cpp" line="225"/>
+        <location filename="dashboard.cpp" line="249"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation type="unfinished">图像文件(*.png *.jpg *.bmp)</translation>
     </message>
@@ -133,9 +133,14 @@
         <translation type="unfinished">降落延误率：%1%</translation>
     </message>
     <message>
-        <location filename="imageview.cpp" line="239"/>
+        <location filename="imageview.cpp" line="238"/>
         <source>Blue number is reliability</source>
         <translation type="unfinished">蓝色数字表示置信度</translation>
+    </message>
+    <message>
+        <location filename="imageview.cpp" line="239"/>
+        <source>Recommend flying height 4000m</source>
+        <translation type="unfinished">建议飞行高度 4000m</translation>
     </message>
 </context>
 <context>
