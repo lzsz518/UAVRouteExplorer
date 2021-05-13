@@ -23,6 +23,8 @@ SOURCES += \
     imageview.cpp \
     main.cpp \
     mainwindow.cpp \
+    meteorology.cpp \
+    setting.cpp \
     uavrouteexplorer.cpp \
     waintingdialog.cpp
 
@@ -33,6 +35,8 @@ HEADERS += \
     dashboard.h \
     imageview.h \
     mainwindow.h \
+    meteorology.h \
+    setting.h \
     uavrouteexplorer.h \
     waintingdialog.h
 
@@ -41,6 +45,8 @@ FORMS += \
     augmentationparameter.ui \
     dashboard.ui \
     mainwindow.ui \
+    meteorology.ui \
+    setting.ui \
     waintingdialog.ui
 
 # Default rules for deployment.

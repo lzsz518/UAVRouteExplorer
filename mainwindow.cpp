@@ -6,6 +6,8 @@
 #include "dashboard.h"
 #include "augmentationparameter.h"
 #include "waintingdialog.h"
+#include "setting.h"
+#include "meteorology.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 
@@ -22,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->action_About,&QAction::triggered,this,&MainWindow::slotAbout);
     connect(ui->actionAug,&QAction::triggered,this,&MainWindow::slotAugmentation);
     connect(ui->actionDI,&QAction::triggered,this,&MainWindow::slotDataImport);
+    connect(ui->actionSetting,&QAction::triggered,this,&MainWindow::slotSetting);
+    connect(ui->actionMeteorology,&QAction::triggered,this,&MainWindow::slotMeteorology);
 
     setWindowIcon(QIcon(":/Pic/UAV.png"));
 
@@ -105,3 +109,14 @@ void MainWindow::slotDataImport()
     wd.exec();
 }
 
+void MainWindow::slotSetting()
+{
+    Setting setting;
+    setting.exec();
+}
+
+void MainWindow::slotMeteorology()
+{
+    meteorology m;
+    m.exec();
+}

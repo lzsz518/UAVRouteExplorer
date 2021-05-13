@@ -29,6 +29,8 @@
     </property>
     <addaction name="actionAug"/>
     <addaction name="actionDI"/>
+    <addaction name="actionSetting"/>
+    <addaction name="actionMeteorology"/>
     <addaction name="actionNewPathExploer"/>
     <addaction name="actionExit"/>
    </widget>
@@ -86,6 +88,19 @@
   <action name="actionDI">
    <property name="text">
     <string>DataImport</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionSetting">
+   <property name="text">
+    <string>Setting</string>
+   </property>
+  </action>
+  <action name="actionMeteorology">
+   <property name="text">
+    <string>Meteorology</string>
    </property>
   </action>
  </widget>

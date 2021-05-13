@@ -77,7 +77,7 @@
     <message>
         <location filename="dashboard.ui" line="168"/>
         <source>OpenImage</source>
-        <translation type="unfinished">打开图像</translation>
+        <translation type="unfinished">导入数据</translation>
     </message>
     <message>
         <location filename="dashboard.ui" line="175"/>
@@ -156,49 +156,59 @@
         <translation type="unfinished">文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="37"/>
+        <location filename="mainwindow.ui" line="39"/>
         <source>&amp;View</source>
         <translation type="unfinished">视图</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="44"/>
+        <location filename="mainwindow.ui" line="46"/>
         <source>&amp;Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="55"/>
+        <location filename="mainwindow.ui" line="57"/>
         <source>&amp;NewPathExploer</source>
         <translation type="unfinished">新建寻路</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="60"/>
+        <location filename="mainwindow.ui" line="62"/>
         <source>&amp;Exit</source>
         <translation type="unfinished">退出</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="65"/>
+        <location filename="mainwindow.ui" line="67"/>
         <source>&amp;Cascade</source>
         <translation type="unfinished">堆叠</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="70"/>
+        <location filename="mainwindow.ui" line="72"/>
         <source>&amp;Tile</source>
         <translation type="unfinished">排列</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="75"/>
+        <location filename="mainwindow.ui" line="77"/>
         <source>&amp;About</source>
         <translation type="unfinished">关于</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="80"/>
+        <location filename="mainwindow.ui" line="82"/>
         <source>Augmentation</source>
         <translation type="unfinished">增广</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="88"/>
+        <location filename="mainwindow.ui" line="90"/>
         <source>DataImport</source>
         <translation type="unfinished">数据导入</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="98"/>
+        <source>Setting</source>
+        <translation type="unfinished">参数设置</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="103"/>
+        <source>Meteorology</source>
+        <translation type="unfinished">气象条件约束</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="77"/>
@@ -215,6 +225,44 @@
         <location filename="mainwindow.cpp" line="97"/>
         <source>%1 frames augmented.</source>
         <translation type="unfinished">%1 幅图像已增广</translation>
+    </message>
+</context>
+<context>
+    <name>Setting</name>
+    <message>
+        <location filename="setting.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished">参数设置</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="28"/>
+        <source>Speed</source>
+        <translation type="unfinished">巡航速度</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="35"/>
+        <source>FlyWeight</source>
+        <translation type="unfinished">最大起飞重量</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="42"/>
+        <source>Duration</source>
+        <translation type="unfinished">续航时间</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="49"/>
+        <source>Type</source>
+        <translation type="unfinished">型号</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="56"/>
+        <source>Load</source>
+        <translation type="unfinished">任务载重</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="63"/>
+        <source>Ceiling</source>
+        <translation type="unfinished">实用</translation>
     </message>
 </context>
 <context>
@@ -252,6 +300,29 @@
         <location filename="waintingdialog.cpp" line="56"/>
         <source>Data import succeed.</source>
         <translation type="unfinished">数据导入成功.</translation>
+    </message>
+</context>
+<context>
+    <name>meteorology</name>
+    <message>
+        <location filename="meteorology.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished">气象约束条件</translation>
+    </message>
+    <message>
+        <location filename="meteorology.ui" line="28"/>
+        <source>Risk Ew &lt;=</source>
+        <translation type="unfinished">雷暴危险程度 Ew &lt;=</translation>
+    </message>
+    <message>
+        <location filename="meteorology.ui" line="35"/>
+        <source>Ice Ic &lt;=</source>
+        <translation type="unfinished">积冰指数 Ic &lt;=</translation>
+    </message>
+    <message>
+        <location filename="meteorology.ui" line="42"/>
+        <source>Richardson DR&gt;=</source>
+        <translation type="unfinished">理查森数 DR &gt;=</translation>
     </message>
 </context>
 </TS>

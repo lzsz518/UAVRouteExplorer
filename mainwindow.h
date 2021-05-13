@@ -25,7 +25,8 @@ private slots:
     void slotAbout();
     void slotAugmentation();
     void slotDataImport();
-
+    void slotSetting();
+    void slotMeteorology();
 private:
     Ui::MainWindow *ui;
     QMdiArea mdiarea;
