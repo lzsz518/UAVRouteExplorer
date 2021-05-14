@@ -126,6 +126,12 @@ void ImageView::SetPercentageOfDelay(int i)
     percentageofdelay = i;
 }
 
+void ImageView::SetNormalPath(const QVector<QPoint> &npath)
+{
+    path_normal.clear();
+    path_normal = npath;
+}
+
 void ImageView::FindPath()
 {
     AStar::Generator gen;
@@ -196,6 +202,15 @@ void ImageView::paintEvent(QPaintEvent *event)
 
     QPen oldpen = painter_img.pen();
     QPen newpen;
+
+    newpen.setColor(Qt::black);
+    newpen.setWidth(2);
+    painter_img.setPen(newpen);
+    for(int i=0;i<path_normal.size()-1;++i)
+    {
+        painter_img.drawPoint(path_normal[i]);
+    }
+
     newpen.setColor(Qt::green);
     newpen.setWidth(2);
     painter_img.setPen(newpen);
@@ -209,7 +224,6 @@ void ImageView::paintEvent(QPaintEvent *event)
     {
         painter_img.drawPoint(path[i]);
     }
-
 
     newpen.setColor(Qt::blue);
     painter_img.setPen(newpen);

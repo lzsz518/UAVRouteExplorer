@@ -20,6 +20,7 @@ public:
     void SetEndPoint();
     void SetNonePoint();
     void SetPercentageOfDelay(int i);
+    void SetNormalPath(const QVector<QPoint> &npath);
 
     void FindPath();
 protected:
@@ -61,6 +62,7 @@ private:
     QPoint uav_point;
     QVector<QRect> storm_areas;
     QVector<QPoint> path;
+    QVector<QPoint> path_normal;
     QVector<float> storm_reliability;
 };
 

@@ -70,6 +70,7 @@ void Dashboard::slotExplore()
     view->SetPercentageOfDelay(temp);
     path_index = 0;
     view->SetNonePoint();
+    view->SetNormalPath(noncollision_paths);
     DisableUI();
     animation_timer.start(ui->hs_uavspeed->value());
 }
