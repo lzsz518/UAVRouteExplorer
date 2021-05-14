@@ -15,6 +15,10 @@ public:
     explicit meteorology(QWidget *parent = nullptr);
     ~meteorology();
 
+
+private slots:
+    void slotOK();
+
 private:
     Ui::meteorology *ui;
 };

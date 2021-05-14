@@ -15,6 +15,9 @@ public:
     explicit Setting(QWidget *parent = nullptr);
     ~Setting();
 
+private slots:
+    void slotOK();
+
 private:
     Ui::Setting *ui;
 };

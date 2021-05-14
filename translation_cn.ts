@@ -262,7 +262,7 @@
     <message>
         <location filename="setting.ui" line="63"/>
         <source>Ceiling</source>
-        <translation type="unfinished">实用</translation>
+        <translation type="unfinished">实用升限</translation>
     </message>
 </context>
 <context>
