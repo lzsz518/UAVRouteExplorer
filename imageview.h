@@ -21,6 +21,7 @@ public:
     void SetNonePoint();
     void SetPercentageOfDelay(int i);
     void SetNormalPath(const QVector<QPoint> &npath);
+    void SetStartFlag(bool enable);
 
     void FindPath();
 protected:
@@ -50,6 +51,7 @@ private:
     bool isSetStartPoint;
     bool isSetEndPoint;
     bool isSetNonePoint;
+    bool isStart;
     int percentageofdelay;
     QRect rect;
     QImage *img;

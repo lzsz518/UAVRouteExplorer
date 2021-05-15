@@ -72,11 +72,13 @@ void Dashboard::slotExplore()
     view->SetNonePoint();
     view->SetNormalPath(noncollision_paths);
     DisableUI();
+    view->SetStartFlag(true);
     animation_timer.start(ui->hs_uavspeed->value());
 }
 
 void Dashboard::slotStop()
 {
+    view->SetStartFlag(false);
     ui->pb_explore->setEnabled(true);
     ResetUI();
 }
@@ -140,7 +142,7 @@ void Dashboard::slotPrevFrame()
         paths.remove(path_index,paths.size()-path_index);
         noncollision_paths.clear();
         noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index-1],end_point,QVector<QRect>());
-        view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
+//        view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
         for(int i=0;i<new_path.size();++i)
         {
             paths.push_back(new_path[i]);
@@ -173,7 +175,7 @@ void Dashboard::slotNextFrame()
         paths.remove(path_index,paths.size()-path_index);
         noncollision_paths.clear();
         noncollision_paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),paths[path_index-1],end_point,QVector<QRect>());
-        view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
+//        view->SetPercentageOfDelay((paths.size()/noncollision_paths.size())*100-100);
 
         for(int i=0;i<new_path.size();++i)
         {
@@ -517,6 +519,7 @@ void Dashboard::ResetUI()
     ui->rb_endpoint->setEnabled(true);
     ui->hs_uavspeed->setEnabled(true);
     ui->hs_uavmargin->setEnabled(true);
+    view->repaint();
 }
 
 

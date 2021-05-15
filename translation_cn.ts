@@ -148,7 +148,7 @@
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>UAVRouteExplorer</source>
-        <translation type="unfinished">航迹规划模拟器</translation>
+        <translation type="unfinished">无人机气象风险规避航迹规划模拟软件</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="28"/>

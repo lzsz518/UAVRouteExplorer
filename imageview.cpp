@@ -51,6 +51,8 @@ ImageView::ImageView(QWidget *parent) : QWidget(parent)
     landing_delay = 0;
     temp1 = QRandomGenerator::global()->bounded(9);
     temp2 = QRandomGenerator::global()->bounded(9);
+
+    isStart = false;
 }
 
 ImageView::~ImageView()
@@ -130,6 +132,11 @@ void ImageView::SetNormalPath(const QVector<QPoint> &npath)
 {
     path_normal.clear();
     path_normal = npath;
+}
+
+void ImageView::SetStartFlag(bool enable)
+{
+    isStart = enable;
 }
 
 void ImageView::FindPath()
@@ -250,7 +257,8 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter.drawText(10,70,QString(tr("Landing Delay Rate: %1%")).arg(landing_delay));
     painter.setPen(pen);
     painter.drawText(10,90,QString(tr("Blue number is reliability")).arg(landing_delay));
-    painter.drawText(10,110,QString(tr("Recommend flying height 4000m")));
+    if(isStart)
+        painter.drawText(10,110,QString(tr("Recommend flying height 4000m")));
     painter.setPen(old_pen);
 }
 
