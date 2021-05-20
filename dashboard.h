@@ -61,6 +61,8 @@ private:
     int GetUAVAngle(QPoint p1,QPoint p2);
     void DisableUI();
     void ResetUI();
+
+    bool IsPointInsideRect(const QPoint p, const QVector<QVector<QRect>> &rects);
 };
 
 #endif // DASHBOARD_H

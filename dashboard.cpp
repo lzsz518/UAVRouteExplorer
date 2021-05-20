@@ -62,6 +62,13 @@ void Dashboard::slotExplore()
         QMessageBox::information(this,"信息","请选择图像");
         return;
     }
+    bool start_inside_storm = IsPointInsideRect(start_point,storm_areas);
+    bool end_inside_storm = IsPointInsideRect(end_point,storm_areas);
+    if(start_inside_storm || end_inside_storm)
+    {
+        QMessageBox::information(nullptr,"",tr("The start point or end point inside storm area, please reset it."));
+        return;
+    }
     paths.clear();
     paths = FindPath(storm_images[frame_index]->width(),storm_images[frame_index]->height(),start_point,end_point,storm_areas[frame_index]);
     noncollision_paths.clear();
@@ -523,6 +530,22 @@ void Dashboard::ResetUI()
 }
 
 
+bool Dashboard::IsPointInsideRect(const QPoint p, const QVector<QVector<QRect>> &rects)
+{
+    int i,j;
+    for(i=0;i<rects.size();++i)
+    {
+        for(j=0;j<rects[i].size();++j)
+        {
+            if(rects[i][j].contains(p))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
 
 
 

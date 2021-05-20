@@ -17,10 +17,24 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="2" column="1">
-      <widget class="QLineEdit" name="le_flyweight"/>
+      <widget class="QLineEdit" name="le_flyweight">
+       <property name="text">
+        <string>320kg</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="le_type"/>
+      <widget class="QLineEdit" name="le_type">
+       <property name="text">
+        <string>ASN209</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="0" column="2">
       <widget class="QLabel" name="label_4">
@@ -65,16 +79,44 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QLineEdit" name="le_speed"/>
+      <widget class="QLineEdit" name="le_speed">
+       <property name="text">
+        <string>120km/h</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="le_ceiliing"/>
+      <widget class="QLineEdit" name="le_ceiliing">
+       <property name="text">
+        <string>5000m</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QLineEdit" name="le_duration"/>
+      <widget class="QLineEdit" name="le_duration">
+       <property name="text">
+        <string>10h</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QLineEdit" name="le_load"/>
+      <widget class="QLineEdit" name="le_load">
+       <property name="text">
+        <string>50kg</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

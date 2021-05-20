@@ -105,12 +105,17 @@
         <translation type="unfinished">关闭</translation>
     </message>
     <message>
-        <location filename="dashboard.cpp" line="249"/>
+        <location filename="dashboard.cpp" line="69"/>
+        <source>The start point or end point inside storm area, please reset it.</source>
+        <translation type="unfinished">无人机起降点在风暴区域内,请重新设置.</translation>
+    </message>
+    <message>
+        <location filename="dashboard.cpp" line="259"/>
         <source>Open Image</source>
         <translation type="unfinished">打开图像</translation>
     </message>
     <message>
-        <location filename="dashboard.cpp" line="249"/>
+        <location filename="dashboard.cpp" line="259"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation type="unfinished">图像文件(*.png *.jpg *.bmp)</translation>
     </message>
@@ -118,27 +123,27 @@
 <context>
     <name>ImageView</name>
     <message>
-        <location filename="imageview.cpp" line="234"/>
+        <location filename="imageview.cpp" line="255"/>
         <source>Main Task Delay Rate: %1%</source>
         <translation type="unfinished">关键任务延误率：%1%</translation>
     </message>
     <message>
-        <location filename="imageview.cpp" line="235"/>
+        <location filename="imageview.cpp" line="256"/>
         <source>LanchDelayRate: %1%</source>
         <translation type="unfinished">起飞延误率：%1%</translation>
     </message>
     <message>
-        <location filename="imageview.cpp" line="236"/>
+        <location filename="imageview.cpp" line="257"/>
         <source>Landing Delay Rate: %1%</source>
         <translation type="unfinished">降落延误率：%1%</translation>
     </message>
     <message>
-        <location filename="imageview.cpp" line="238"/>
+        <location filename="imageview.cpp" line="259"/>
         <source>Blue number is reliability</source>
         <translation type="unfinished">蓝色数字表示置信度</translation>
     </message>
     <message>
-        <location filename="imageview.cpp" line="239"/>
+        <location filename="imageview.cpp" line="261"/>
         <source>Recommend flying height 4000m</source>
         <translation type="unfinished">建议飞行高度 4000m</translation>
     </message>
@@ -211,18 +216,18 @@
         <translation type="unfinished">气象条件约束</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="77"/>
+        <location filename="mainwindow.cpp" line="81"/>
         <source>:/Pic/Rainbow-4.jpg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="97"/>
+        <location filename="mainwindow.cpp" line="101"/>
         <source>Information</source>
         <translatorcomment>%1 图像已增广</translatorcomment>
         <translation type="unfinished">消息</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="97"/>
+        <location filename="mainwindow.cpp" line="101"/>
         <source>%1 frames augmented.</source>
         <translation type="unfinished">%1 幅图像已增广</translation>
     </message>
@@ -235,34 +240,64 @@
         <translation type="unfinished">参数设置</translation>
     </message>
     <message>
-        <location filename="setting.ui" line="28"/>
+        <location filename="setting.ui" line="22"/>
+        <source>320kg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="32"/>
+        <source>ASN209</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="42"/>
         <source>Speed</source>
         <translation type="unfinished">巡航速度</translation>
     </message>
     <message>
-        <location filename="setting.ui" line="35"/>
+        <location filename="setting.ui" line="49"/>
         <source>FlyWeight</source>
         <translation type="unfinished">最大起飞重量</translation>
     </message>
     <message>
-        <location filename="setting.ui" line="42"/>
+        <location filename="setting.ui" line="56"/>
         <source>Duration</source>
         <translation type="unfinished">续航时间</translation>
     </message>
     <message>
-        <location filename="setting.ui" line="49"/>
+        <location filename="setting.ui" line="63"/>
         <source>Type</source>
         <translation type="unfinished">型号</translation>
     </message>
     <message>
-        <location filename="setting.ui" line="56"/>
+        <location filename="setting.ui" line="70"/>
         <source>Load</source>
         <translation type="unfinished">任务载重</translation>
     </message>
     <message>
-        <location filename="setting.ui" line="63"/>
+        <location filename="setting.ui" line="77"/>
         <source>Ceiling</source>
         <translation type="unfinished">实用升限</translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="84"/>
+        <source>120km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="94"/>
+        <source>5000m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="104"/>
+        <source>10h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="setting.ui" line="114"/>
+        <source>50kg</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -310,19 +345,34 @@
         <translation type="unfinished">气象约束条件</translation>
     </message>
     <message>
-        <location filename="meteorology.ui" line="28"/>
+        <location filename="meteorology.ui" line="22"/>
+        <source>0.3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="meteorology.ui" line="32"/>
+        <source>50</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="meteorology.ui" line="42"/>
         <source>Risk Ew &lt;=</source>
         <translation type="unfinished">雷暴危险程度 Ew &lt;=</translation>
     </message>
     <message>
-        <location filename="meteorology.ui" line="35"/>
+        <location filename="meteorology.ui" line="49"/>
         <source>Ice Ic &lt;=</source>
         <translation type="unfinished">积冰指数 Ic &lt;=</translation>
     </message>
     <message>
-        <location filename="meteorology.ui" line="42"/>
+        <location filename="meteorology.ui" line="56"/>
         <source>Richardson DR&gt;=</source>
         <translation type="unfinished">理查森数 DR &gt;=</translation>
+    </message>
+    <message>
+        <location filename="meteorology.ui" line="63"/>
+        <source>0</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
