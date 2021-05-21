@@ -257,8 +257,8 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter.drawText(10,70,QString(tr("Landing Delay Rate: %1%")).arg(landing_delay));
     painter.setPen(pen);
     painter.drawText(10,90,QString(tr("Blue number is reliability")).arg(landing_delay));
-    if(isStart)
-        painter.drawText(10,110,QString(tr("Recommend flying height 4000m")));
+//    if(isStart)
+//        painter.drawText(10,110,QString(tr("Recommend flying height 4000m")));
     painter.setPen(old_pen);
 }
 
