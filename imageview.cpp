@@ -211,7 +211,7 @@ void ImageView::paintEvent(QPaintEvent *event)
     QPen newpen;
 
     newpen.setColor(Qt::black);
-    newpen.setWidth(2);
+    newpen.setWidth(3);
     painter_img.setPen(newpen);
     for(int i=0;i<path_normal.size()-1;++i)
     {
@@ -223,7 +223,7 @@ void ImageView::paintEvent(QPaintEvent *event)
     painter_img.setPen(newpen);
     painter_img.drawEllipse(start_point,20,20);
     newpen.setColor(Qt::red);
-    newpen.setWidth(2);
+    newpen.setWidth(3);
     painter_img.setPen(newpen);
     painter_img.drawEllipse(end_point,20,20);
 
